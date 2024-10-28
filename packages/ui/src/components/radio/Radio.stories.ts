@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react'
-import { RadioProps } from 'Radio'
+import { RadioProps } from './Radio'
 import { Radio } from './Radio'
 import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 
