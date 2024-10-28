@@ -3,21 +3,37 @@ import './radio.css'
 import '../../styles/ktcTheme.scss'
 
 export interface RadioProps {
-  name: string
-  value: string
-  size?: 's' | 'm'
-  label: string
-  onClick?: () => void
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
+  disabled?: boolean
+  name?: string
+  size?: 'small' | 'medium' | 'large'
+  value?: string
+  onChange?: () => void
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const Radio = ({ name, value, size, label, ...props }: RadioProps) => {
+export const Radio = (
+  {
+    color = 'primary',
+    disabled = false,
+    name,
+    size = 'medium',
+    value,
+    onChange,
+    ...props
+  }: RadioProps) => {
   return (
-    <div>
-      <input type="radio" name={name} value={value} className={`ktc-radio-button-size-${size}`} />
-      <label style={{ fontSize: `var(--ktc-font-size-${size})` }}>{label}</label>
-    </div>
+    // <>
+      <input
+        type='radio'
+        disabled={disabled}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={[`storybook-radio-primary`].join(' ')}
+      />
+    // </>
   )
 }
+
+ /*<label style={{ fontSize: `var(--ktc-font-size-${size})` }}>{label}</label>*/
+       

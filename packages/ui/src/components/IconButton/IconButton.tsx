@@ -1,66 +1,49 @@
-import type { StoryObj } from '@storybook/react'
-import { IconButton } from './IconButton'
-import { IconButtonProps } from './IconButton'
-import { TrashIcon } from '@storybook/icons'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import React, { ReactNode, useState } from 'react'
+import './icon-button.scss'
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
-const sizeOptions = ['small', 'medium', 'large'] as const
-const variantOptions = ['filled', 'outlined', 'standard'] as const
-interface IMeta {
-  title: string;
-  component: object
-  parameters: object
-  tags: string[]
-  args?: object
-  argTypes: object
-  render?: any
+export interface IconButtonProps {
+  icon: ReactNode
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
+  disabled?: boolean
+  href?: string
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const meta: IMeta = {
-  title: 'Components/IconButton',
-  component: IconButton,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs', '!dev'],
-  argTypes: {
-    color: {
-      description: 'button의 색상을 설정합니다.',
-      control: { type: 'select' },
-    },
-    disabled: {
-      description: '값이 true일 경우, button이 비활성화 됩니다.',
-    },
-    href: {
-      description: 'button이 눌렸을 때, 해당 URL로 이동합니다.',
-    },
-    onClick: {
-      description: 'button이 눌렸을 때, onClick 이벤트를 설정합니다.',
-    }
-  }
+export const IconButton = (
+  {
+    color = 'primary',
+    disabled = false,
+    href,
+    onClick,
+    ...props
+  }: IconButtonProps) => {
+  return href && !disabled ? (
+    <a href={href}>
+      <button
+        type='button'
+        className={[`storybook-icon-button-${color}`].join(' ')}
+        disabled={!!disabled}
+        onClick={(event) => {
+          if (onClick) {
+            onClick(event) // 클릭 이벤트 객체를 전달하여 호출
+          }
+        }}
+      >
+        {props.icon}
+      </button>
+    </a>
+  )  : (
+    <button
+      type='button'
+      className={[`storybook-icon-button-${color}`].join(' ')}
+      disabled={!!disabled}
+      onClick={(event) => {
+        if (onClick) {
+          onClick(event) // 클릭 이벤트 객체를 전달하여 호출
+        }
+      }}
+    >
+      {props.icon}
+    </button>
+  )
 }
-export default meta
-
-type Story = StoryObj<IconButtonProps>;
-
-export const Default: Story = {
-  args: {
-    icon: <TrashIcon size={20}/>,
-    href: 'https://www.naver.com'
-  }
-};
-
-export const Color: Story = {
-  render: () => {
-    const colorGroup = colorOptions.map((color) => <IconButton color={color} icon={<TrashIcon size={20}/>}/>)
-    return <StoryContainer items={colorGroup} />
-  }
-};
-
-export const Disabled: Story = {
-  args: {
-    icon: <TrashIcon size={20}/>,
-    disabled: true
-  }
-};

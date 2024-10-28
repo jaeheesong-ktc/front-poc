@@ -61,7 +61,7 @@ const meta: IMeta = {
       description: 'Text Field 의 필수 여부를 설정합니다.',
       control: 'boolean',
     },
-    disabledㅌ: {
+    disabled: {
       description: 'Text Field 의 disabled 속성을 설정합니다.',
       control: 'boolean',
     },

@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
 import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
-import {ButtonProps} from './Button';
+import { ButtonProps } from './Button';
 import { TrashIcon } from '@storybook/icons'
 import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 
@@ -67,34 +67,34 @@ const meta: IMeta = {
 }
 export default meta
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<ButtonProps>
 
 export const Default: Story = {
   args: { 
     label: 'Button',
   },
-};
+}
 
 export const Color: Story = {
   render: () => {
     const colorGroup = colorOptions.map((color) => <Button label={color} color={color}/>)
     return <StoryContainer items={colorGroup} />
   }
-};
+}
 
 export const Disable: Story = {
   render: () => {
     const variantGroup = variantOptions.map((variant) => <Button label='disabled' variant={variant} disabled/>)
     return <StoryContainer items={variantGroup} />
   }
-};
+}
 
 export const Loading: Story = {
   render: () => {
     const loadingGroup = variantOptions.map((variant) => <Button variant={variant} loading />)
     return <StoryContainer items={loadingGroup} />
   }
-};
+}
 
 export const Variant: Story = {
   render: () => {
@@ -108,25 +108,25 @@ export const Variant: Story = {
     ))
     return <>{colorGroup}</>
   }
-};
+}
 
 export const Size: Story = {
   render: () => {
     const sizeGroup = sizeOptions.map((size) => <Button label={size} color='primary' variant='filled' size={size}/>)
     return <StoryContainer items={sizeGroup} />
   }
-};
+}
 
 export const StartIcon: Story = {
   render: () => {
     const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='primary' variant={variant} startIcon={<TrashIcon size={16}/>}/>)
     return <StoryContainer items={IconGroup} />
   }
-};
+}
 
 export const EndIcon: Story = {
   render: () => {
     const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='secondary' variant={variant} endIcon={<TrashIcon size={16}/>}/>)
     return <StoryContainer items={IconGroup} />
   }
-};
+}
