@@ -1,47 +1,84 @@
-import React, { useState } from 'react'
+import React, { ReactNode } from 'react'
 import './button.scss'
 
 export interface ButtonProps {
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
   disabled?: boolean
   href?: string
-  label: string
+  label?: string
   loading?: boolean
-  variant?: 'contained' | 'outlined' | 'text'
+  variant?: 'filled' | 'outlined' | 'standard'
   size?: 'small' | 'medium' | 'large'
-  onClick?: () => void
+  startIcon?: ReactNode
+  endIcon?: ReactNode
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const Button = ({  
-                        color = 'primary',
-                        disabled = false,
-                        href,
-                        label,
-                        loading = false,
-                        variant = 'contained',
-                        size = 'medium',
-                        onClick,
-                        ...props
-                       }: ButtonProps) => {
-                         
-  return(
-    loading? 
-      <button 
+export const Button = (
+  {
+    color = 'primary',
+    disabled = false,
+    href,
+    label,
+    loading = false,
+    variant = 'filled',
+    size = 'medium',
+    onClick,
+    ...props
+  }: ButtonProps) => {
+  const buttonContent = (
+    <>
+      {props.startIcon && (
+        <span className={['storybook-icon-button-start'].join(' ')}>
+          {props.startIcon}
+        </span>
+      )}
+      <span>{label}</span>
+      {props.endIcon && (
+        <span className={['storybook-icon-button-end'].join(' ')}>
+          {props.endIcon}
+        </span>
+      )}
+    </>
+  )
+
+  return loading ? (
+      <button
         type='button'
-        className={['loading-button', `storybook-button--${size}`, `storybook-button-spin-${variant}`].join(' ')} 
+        className={[
+          `storybook-button-${size}`,
+          `storybook-button-spin-${variant}`
+        ].join(' ')}
         disabled={true}
       >
         <span className={[`loader-${variant}`].join(' ')}></span>
       </button>
-    :
-      <button
-        type='button'
-        disabled={disabled}
-        className={['storybook-button', `storybook-button--${size}`, `storybook-button-${color}-${variant}`].join(' ')}
-        onClick={href ? () => (window.location.href = href) : onClick}
-        {...props}
-      >
-        {label}
-      </button>
-  )  
+    ) : href && !disabled ? (
+      <a href={href}>
+        <button 
+          className={[
+            `storybook-button-${size}`,
+            `button-${variant}-${color}`,
+          ].join(' ')}>
+            {buttonContent}
+        </button>
+      </a>
+    ) : (
+    <button
+      type='button'
+      disabled={!!disabled}
+      className={[
+        `storybook-button-${size}`,
+        `button-${variant}-${color}`,
+      ].join(' ')}
+      onClick={(event) => {
+        if (onClick) {
+          onClick(event) // 클릭 이벤트 객체를 전달하여 호출
+        }
+      }}
+      {...props}
+    >
+      {buttonContent}
+    </button>
+  )
 }

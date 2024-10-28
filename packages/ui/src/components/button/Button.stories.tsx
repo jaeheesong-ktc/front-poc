@@ -2,16 +2,19 @@ import {ReactNode} from 'react';
 import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
 import {ButtonProps} from './Button';
-// import { fn } from '@storybook/test'
+import { TrashIcon } from '@storybook/icons'
+import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 
+const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
+const sizeOptions = ['small', 'medium', 'large'] as const
+const variantOptions = ['filled', 'outlined', 'standard'] as const
 interface IMeta {
   title: string;
-  component: {}
-  parameters: {}
+  component: object
+  parameters: object
   tags: string[]
-  args?: {} 
-  // args?: () => ArgsStoryFn // 체크 필요
-  // argTypes: {}
+  args?: object
+  argTypes: object
   render?: any
 }
 
@@ -22,51 +25,49 @@ const meta: IMeta = {
     layout: 'centered',
   },
   tags: ['autodocs', '!dev'],
-  args: { 
+  args: {
     label: 'Button',
   },
-  // args: { onClick: fn() },
+  argTypes: {
+    label: {
+      description: 'button의 label을 설정합니다.',
+      control: { required: true },
+    },
+    color: {
+      description: 'button의 색상을 설정합니다.',
+      control: { type: 'select' },
+    },
+    disabled: {
+      description: '값이 true일 경우, button이 비활성화 됩니다.',
+    },
+    href: {
+      description: 'button이 눌렸을 때, 해당 URL로 이동합니다.',
+    },
+    loading: {
+      description: '값이 true일 경우, button이 로딩 상태로 변경 됩니다.',
+    },
+    variant: {
+      description: 'button의 유형을 설정합니다.',
+      control: { type: 'select' },
+    },
+    size: {
+      description: 'button의 크기를 설정합니다.',
+      control: { type: 'select' },
+    },
+    startIcon: {
+      description: 'button의 label 앞에 Icon을 위치시킵니다.',
+    },
+    endIcon: {
+      description: 'button의 label 뒤에 Icon을 위치시킵니다.',
+    },
+    onClick: {
+      description: 'button이 눌렸을 때, onClick 이벤트를 설정합니다.',
+    }
+  }
 }
 export default meta
 
 type Story = StoryObj<ButtonProps>;
-
-const Container = ({children}: { children: ReactNode }) => {
-  return (
-      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '8px'}}>
-          <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>{children}</div>
-      </div>
-  )
-}
-
-const Template = (args: ButtonProps) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: '32px'}}>
-    <Container>
-      <Button {...args} variant='contained' label='contained'/>
-      <Button {...args} variant='outlined' label='outlined'/>
-      <Button {...args} variant='text' label='text'/>
-    </Container>
-  </div>
-)
-
-const Template2 = (args: ButtonProps) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: '32px'}}>
-    <Container>
-      <Button {...args} size='small' />
-      <Button {...args} size='medium'/>
-      <Button {...args} size='large'/>
-    </Container>
-  </div>
-)
-
-const Template3 = (args: ButtonProps) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: '32px'}}>
-    <Container>
-      <Button {...args} color='primary'/>
-      <Button {...args} color='secondary'/>
-    </Container>
-  </div>
-)
 
 export const Default: Story = {
   args: { 
@@ -74,39 +75,58 @@ export const Default: Story = {
   },
 };
 
-export const color: Story = {
-  render: Template3,
-  args: { 
-    label: 'Button', 
-  },
+export const Color: Story = {
+  render: () => {
+    const colorGroup = colorOptions.map((color) => <Button label={color} color={color}/>)
+    return <StoryContainer items={colorGroup} />
+  }
 };
 
-export const disable: Story = {
-  render: Template2,
-  args: { 
-    label: 'Button',
-    disabled: true,
-  },
+export const Disable: Story = {
+  render: () => {
+    const variantGroup = variantOptions.map((variant) => <Button label='disabled' variant={variant} disabled/>)
+    return <StoryContainer items={variantGroup} />
+  }
 };
 
-export const loading: Story = {
-  render: Template2,
-  args: { 
-    label: 'Button',
-    loading: true,
-  },
+export const Loading: Story = {
+  render: () => {
+    const loadingGroup = variantOptions.map((variant) => <Button variant={variant} loading />)
+    return <StoryContainer items={loadingGroup} />
+  }
 };
 
-export const variant: Story = {
-  render: Template,
-  args: { 
-    label: 'Button',
-  },
+export const Variant: Story = {
+  render: () => {
+    const colorGroup = colorOptions.map((color) => (
+      <StoryContainer
+        key={color}
+        items={variantOptions.map((variant) => (
+          <Button label={variant} variant={variant} color={color}/>
+      ))}
+      />
+    ))
+    return <>{colorGroup}</>
+  }
 };
 
-export const size: Story = {
-  render: Template2,
-  args: { 
-    label: 'Button',
-  },
+export const Size: Story = {
+  render: () => {
+    const sizeGroup = sizeOptions.map((size) => <Button label={size} color='primary' variant='filled' size={size}/>)
+    return <StoryContainer items={sizeGroup} />
+  }
+};
+
+export const StartIcon: Story = {
+  render: () => {
+    const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='primary' variant={variant} startIcon={<TrashIcon size={16}/>}/>)
+    return <StoryContainer items={IconGroup} />
+  }
+};
+
+export const EndIcon: Story = {
+  render: () => {
+    const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='secondary' variant={variant} endIcon={<TrashIcon size={16}/>}/>)
+    return <StoryContainer items={IconGroup} />
+  }
 };
