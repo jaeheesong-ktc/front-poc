@@ -1,19 +1,19 @@
-import {ReactNode} from 'react';
 import type { StoryObj } from '@storybook/react'
 import { IconButton } from './IconButton'
 import { IconButtonProps } from './IconButton'
-// import { fn } from '@storybook/test'
 import { TrashIcon } from '@storybook/icons'
-import '../../styles/ktcTheme.scss'
+import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 
+const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
+const sizeOptions = ['small', 'medium', 'large'] as const
+const variantOptions = ['filled', 'outlined', 'standard'] as const
 interface IMeta {
   title: string;
-  component: {}
-  parameters: {}
+  component: object
+  parameters: object
   tags: string[]
-  args?: {} 
-  // args?: () => ArgsStoryFn // 체크 필요
-  // argTypes: {}
+  args?: object
+  argTypes: object
   render?: any
 }
 
@@ -24,32 +24,43 @@ const meta: IMeta = {
     layout: 'centered',
   },
   tags: ['autodocs', '!dev'],
-  // args: { onClick: fn() },
+  argTypes: {
+    color: {
+      description: 'button의 색상을 설정합니다.',
+      control: { type: 'select' },
+    },
+    disabled: {
+      description: '값이 true일 경우, button이 비활성화 됩니다.',
+    },
+    href: {
+      description: 'button이 눌렸을 때, 해당 URL로 이동합니다.',
+    },
+    onClick: {
+      description: 'button이 눌렸을 때, onClick 이벤트를 설정합니다.',
+    }
+  }
 }
 export default meta
 
 type Story = StoryObj<IconButtonProps>;
 
-const Container = ({children}: { children: ReactNode }) => {
-    return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '8px'}}>
-            <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>{children}</div>
-        </div>
-    )
+export const Default: Story = {
+  args: {
+    icon: <TrashIcon size={20}/>,
+    href: 'https://www.naver.com'
   }
+};
 
-const Template = (args: IconButtonProps) => (
-    <div style={{display: 'flex', flexDirection: 'column', gap: '32px'}}>
-      <Container>
-        <IconButton {...args} icon={<TrashIcon size={16}/>} />
-        <IconButton {...args} icon={<TrashIcon size={16}/>} disabled='true' />
-      </Container>
-    </div>
-  )
+export const Color: Story = {
+  render: () => {
+    const colorGroup = colorOptions.map((color) => <IconButton color={color} icon={<TrashIcon size={20}/>}/>)
+    return <StoryContainer items={colorGroup} />
+  }
+};
 
-export const variant: Story = {
-    render: Template,
-    // args: { 
-    //   label: 'Button',
-    // },
-  };
+export const Disabled: Story = {
+  args: {
+    icon: <TrashIcon size={20}/>,
+    disabled: true
+  }
+};

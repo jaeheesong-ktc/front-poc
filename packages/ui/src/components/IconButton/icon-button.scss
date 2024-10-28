@@ -6,6 +6,7 @@
     align-items: center;
     justify-items: center;
     line-height: 1;
+    padding: 12px;
     color: $color;
     background-color: var(--ktc-color-white);
     
@@ -21,23 +22,10 @@
     }
 }
 
-.storybook-icon-button-primary {
-  @include storybook-icon-button(var(--ktc-color-primary), var(--ktc-color-blue-50));
-}
-
-.storybook-icon-button-secondary {
-  @include storybook-icon-button(var(--ktc-color-secondary), var(--ktc-color-teal-50));
-}
-
-
-.storybook-icon-button-small {
-  padding: 6px
-}
-
-.storybook-icon-button-medium {
-  padding: 8px
-}
-
-.storybook-icon-button-large {
-  padding: 12px
+.storybook-icon-button {
+  &-primary { @include storybook-icon-button(var(--ktc-color-primary), var(--ktc-color-blue-50)) }
+  &-secondary { @include storybook-icon-button(var(--ktc-color-success), var(--ktc-color-teal-50)) }
+  &-success { @include storybook-icon-button(var(--ktc-color-success), var(--ktc-color-teal-50)) }
+  &-error { @include storybook-icon-button(var(--ktc-color-error), var(--ktc-color-red-50)) }
+  &-warning { @include storybook-icon-button(var(--ktc-color-warning), var(--ktc-color-yellow-50)) }
 }
