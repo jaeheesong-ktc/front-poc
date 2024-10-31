@@ -32,19 +32,15 @@
     &--primary {
       color: var(--ktc-color-primary);
     }
-
     &--secondary {
       color: var(--ktc-color-secondary);
     }
-
     &--error {
       color: var(--ktc-color-error);
     }
-
     &--success {
       color: var(--ktc-color-success);
     }
-
     &--warning {
       color: var(--ktc-color-warning);
     }
@@ -64,31 +60,34 @@
     transition:
       border-color 0.2s ease,
       background-color 0.2s ease;
+    resize: none;
+  }
+
+  &-outlined,
+  &-filled,
+  &-standard {
+    .ktc-textfield-input {
+      &--primary {
+        @include focus-hover(var(--ktc-color-primary));
+      }
+      &--secondary {
+        @include focus-hover(var(--ktc-color-secondary));
+      }
+      &--error {
+        @include focus-hover(var(--ktc-color-error));
+      }
+      &--success {
+        @include focus-hover(var(--ktc-color-success));
+      }
+      &--warning {
+        @include focus-hover(var(--ktc-color-warning));
+      }
+    }
   }
 
   &-outlined {
     .ktc-textfield-input {
       border: 1px solid var(--ktc-color-gray-300);
-
-      &--primary {
-        @include focus-hover(var(--ktc-color-primary));
-      }
-
-      &--secondary {
-        @include focus-hover(var(--ktc-color-secondary));
-      }
-
-      &--error {
-        @include focus-hover(var(--ktc-color-error));
-      }
-
-      &--success {
-        @include focus-hover(var(--ktc-color-success));
-      }
-
-      &--warning {
-        @include focus-hover(var(--ktc-color-warning));
-      }
     }
   }
 
@@ -99,32 +98,12 @@
       padding: 12px 10px;
       border-bottom: 1px solid var(--ktc-color-gray-300);
 
-      &--primary {
-        @include focus-hover(var(--ktc-color-primary));
-      }
-
-      &--secondary {
-        @include focus-hover(var(--ktc-color-secondary));
-      }
-
-      &--error {
-        @include focus-hover(var(--ktc-color-error));
-      }
-
-      &--success {
-        @include focus-hover(var(--ktc-color-success));
-      }
-
-      &--warning {
-        @include focus-hover(var(--ktc-color-warning));
+      &:focus {
+        background-color: var(--ktc-color-gray-200);
       }
 
       &.ktc-textfield-error {
         border-bottom: 1px solid var(--ktc-color-error);
-      }
-
-      &:focus {
-        background-color: var(--ktc-color-gray-200);
       }
     }
   }
@@ -135,71 +114,61 @@
       border-bottom: 1px solid var(--ktc-color-gray-300);
       border-radius: 0;
       padding: 12px 0;
-
-      &--primary {
-        @include focus-hover(var(--ktc-color-primary));
-      }
-
-      &--secondary {
-        @include focus-hover(var(--ktc-color-secondary));
-      }
-
-      &--error {
-        @include focus-hover(var(--ktc-color-error));
-      }
-
-      &--success {
-        @include focus-hover(var(--ktc-color-success));
-      }
-
-      &--warning {
-        @include focus-hover(var(--ktc-color-warning));
-      }
     }
   }
 
   &-small .ktc-textfield-input {
     padding: 8px 10px;
-    font-size: 14px;
+    font-size: var(--ktc-font-size-xs);
   }
 
   &-medium .ktc-textfield-input {
     padding: 12px 10px;
-    font-size: 16px;
+    font-size: var(--ktc-font-size-s);
   }
 
   &-large .ktc-textfield-input {
     padding: 16px 10px;
-    font-size: 18px;
+    font-size: var(--ktc-font-size-m);
+  }
+
+  &-helperText,
+  &-error {
+    font-size: var(--ktc-font-size-2xs);
+    margin-top: 4px;
   }
 
   &-helperText {
-    font-size: var(--ktc-font-size-2xs);
     color: var(--ktc-color-gray-600);
-    margin-top: 4px;
-
-    .ktc-textfield-input {
-      &:focus,
-      &:hover {
-        border-color: var(--ktc-color-error);
-      }
-
-      border-color: var(--ktc-color-error);
-    }
   }
 
   &-error {
-    font-size: var(--ktc-font-size-2xs);
     color: var(--ktc-color-error);
-    margin-top: 4px;
 
     .ktc-textfield-input {
+      border-color: var(--ktc-color-error);
+
       &:focus,
       &:hover {
         border-color: var(--ktc-color-error);
       }
-
-      border-color: var(--ktc-color-error);
     }
   }
+}
+
+.ktc-textfield-input-container {
+  position: relative;
+}
+
+.ktc-textfield-show-password {
+  position: absolute;
+  right: 0.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }

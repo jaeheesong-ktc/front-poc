@@ -5,6 +5,7 @@ import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 const colorOptions = ['primary', 'secondary', 'error', 'success', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 const variantOptions = ['filled', 'outlined', 'standard'] as const
+const typeOptions = ['text', 'date', 'datetime-local', 'password'] as const
 
 interface IMeta {
   title: string
@@ -25,49 +26,61 @@ const meta: IMeta = {
   tags: ['autodocs', '!dev'],
   argTypes: {
     color: {
-      description: 'Text Field 색상을 설정합니다.',
+      description: 'TextField 색상을 설정합니다.',
       control: { type: 'select', options: colorOptions },
     },
     size: {
-      description: 'Text Field 크기를 설정합니다.',
+      description: 'TextField 크기를 설정합니다.',
       control: { type: 'select', options: sizeOptions },
     },
     variant: {
-      description: 'Text Field 유형을 설정합니다.',
+      description: 'TextField 유형을 설정합니다.',
       control: { type: 'select', options: variantOptions },
     },
     label: {
-      description: 'Text Field 의 label 을 설정합니다.',
+      description: 'TextField 의 label 을 설정합니다.',
       control: 'text',
     },
     value: {
-      description: 'Text Field 의 값을 설정합니다.',
+      description: 'TextField 의 값을 설정합니다.',
       control: 'text',
     },
     placeholder: {
-      description: 'Text Field 의 placeholder 를 설정합니다.',
+      description: 'TextField 의 placeholder 를 설정합니다.',
       control: 'text',
     },
     error: {
       description:
-        'Text Field 의 Error 여부를 설정합니다. 사용자 Feedback 을 위한 helperText 가 사용될 수 있습니다.',
+        'TextField 의 Error 여부를 설정합니다. 사용자 Feedback 을 위한 helperText 가 사용될 수 있습니다.',
       control: 'boolean',
     },
     helperText: {
-      description: 'Text Field 의 helperText 를 설정합니다.',
+      description: 'TextField 의 helperText 를 설정합니다.',
+      control: 'text',
+    },
+    id: {
+      description: 'TextField 의 id 를 설정합니다.',
       control: 'text',
     },
     required: {
-      description: 'Text Field 의 필수 여부를 설정합니다.',
+      description: 'TextField 의 필수 여부를 설정합니다.',
       control: 'boolean',
     },
     disabled: {
-      description: 'Text Field 의 disabled 속성을 설정합니다.',
+      description: 'TextField 의 disabled 속성을 설정합니다.',
       control: 'boolean',
     },
     onChange: {
-      description: 'Text Field 의 onChange event 를 설정합니다.',
+      description: 'TextField 의 onChange event 를 설정합니다.',
       action: 'changed',
+    },
+    rows: {
+      description: 'TextField 의 row 를 설정합니다.',
+      control: 'text',
+    },
+    type: {
+      description: 'TextField 의 형식을 설정합니다.',
+      control: { type: 'select', options: typeOptions },
     },
   },
 }
@@ -91,7 +104,7 @@ export const Default: Story = {
 export const Variant: Story = {
   render: () => {
     const variantGroup = variantOptions.map((variant) => (
-      <TextField variant={variant} label={variant} />
+      <TextField label={variant} variant={variant} placeholder={variant} />
     ))
     return <StoryContainer items={variantGroup} />
   },
@@ -137,7 +150,9 @@ export const Color: Story = {
 
 export const Size: Story = {
   render: () => {
-    const sizeGroup = sizeOptions.map((size) => <TextField label={size} size={size} />)
+    const sizeGroup = sizeOptions.map((size) => (
+      <TextField label={size} size={size} placeholder={size} />
+    ))
     return <StoryContainer items={sizeGroup} />
   },
   parameters: {
@@ -145,6 +160,30 @@ export const Size: Story = {
       source: {
         code: `
           <TextField size={size} />
+        `,
+      },
+    },
+  },
+}
+
+export const Multiline: Story = {
+  render: () => {
+    const variantGroup = variantOptions.map((variant) => (
+      <TextField
+        multiline
+        rows={3}
+        variant={variant}
+        label={variant}
+        placeholder={'multiline TextField'}
+      />
+    ))
+    return <StoryContainer items={variantGroup} />
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+          <TextField multiline rows={rows} />
         `,
       },
     },
