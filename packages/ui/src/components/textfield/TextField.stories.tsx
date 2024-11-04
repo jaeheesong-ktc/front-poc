@@ -45,6 +45,9 @@ const meta: IMeta = {
       description: 'TextField 의 값을 설정합니다.',
       control: 'text',
     },
+    style: {
+      description: 'TextField 의 style 을 설정합니다.',
+    },
     placeholder: {
       description: 'TextField 의 placeholder 를 설정합니다.',
       control: 'text',
@@ -75,8 +78,13 @@ const meta: IMeta = {
       action: 'changed',
     },
     rows: {
-      description: 'TextField 의 row 를 설정합니다.',
-      control: 'text',
+      description: 'TextField 의 row 를 설정합니다. 최대 설정 값은 20 입니다.',
+      control: {
+        type: 'number',
+        min: 1,
+        step: 1,
+      },
+      defaultValue: null,
     },
     type: {
       description: 'TextField 의 형식을 설정합니다.',
@@ -98,6 +106,7 @@ export const Default: Story = {
     color: 'primary',
     required: true,
     value: '',
+    style: {},
   },
 }
 

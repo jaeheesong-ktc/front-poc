@@ -8,54 +8,54 @@ type VariantOptions = 'filled' | 'outlined' | 'standard'
 type TypeOptions = 'text' | 'date' | 'datetime-local' | 'file' | 'password'
 
 interface TextFieldProps {
-  color?: ColorOptions
-  value?: string
-  variant?: VariantOptions
-  error?: boolean
-  helperText?: string
   id?: string | any
   label?: string
+  value?: string
+  variant?: VariantOptions
   placeholder?: string | any
+  color?: ColorOptions
   required?: boolean | any
   size?: SizeOptions
-  disabled?: boolean | any
-  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  multiline?: boolean
-  rows?: number
   type?: TypeOptions
+  style?: React.CSSProperties
+  error?: boolean
+  disabled?: boolean | any
+  multiline?: boolean
+  rows?: number | undefined
+  helperText?: string
+  readOnly?: boolean
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
 export const TextField = ({
-  color = 'primary',
-  value = '',
-  variant = 'outlined',
   id,
   label,
+  value = '',
+  variant = 'outlined',
   placeholder,
+  color = 'primary',
   required = false,
   size = 'medium',
-  onChange,
+  type = 'text',
+  style,
   error = false,
   disabled,
-  helperText,
   multiline = false,
-  rows = 1,
-  type = 'text',
+  rows,
+  helperText,
+  readOnly,
+  onChange,
   ...props
 }: TextFieldProps) => {
   const [isFocused, setIsFocused] = useState(false)
   const [internalValue, setInternalValue] = useState(value || '')
-  const [showPassword, setShowPassword] = useState(false) // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   const handleFocus = () => setIsFocused(true)
   const handleBlur = () => setIsFocused(false)
 
   const showPlaceholder = !internalValue && placeholder
-
-  useEffect(() => {
-    setInternalValue(value || '')
-  }, [value])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInternalValue(e.target.value)
@@ -67,12 +67,38 @@ export const TextField = ({
   const getClassNames = (...classes: Array<string | false | null | undefined>) =>
     classes.filter(Boolean).join(' ')
 
+  const commonProps = {
+    id,
+    value: internalValue,
+    className: getClassNames(`ktc-textfield-input`, `ktc-textfield-input--${color}`),
+    placeholder: showPlaceholder ? placeholder : '',
+    required,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    disabled,
+    onChange: handleChange,
+    style,
+    readOnly,
+    ...props,
+  }
+
   useEffect(() => {
-    if (multiline && !rows && textareaRef.current) {
+    if (!textareaRef.current) return
+
+    if (multiline && !rows) {
       textareaRef.current.style.height = 'auto'
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    } else if (rows && multiline) {
+      textareaRef.current.style.height = `${rows * 1}em`
+      textareaRef.current.style.overflow = ''
     }
+    textareaRef.current.style.overflow = 'hidden'
   }, [internalValue, multiline, rows])
+  ;<textarea ref={textareaRef} rows={rows || 1} {...commonProps} />
+
+  useEffect(() => {
+    setInternalValue(value || '')
+  }, [value])
 
   return (
     <div className="ktc-textfield-root">
@@ -103,34 +129,12 @@ export const TextField = ({
           )}
           <div className="ktc-textfield-input-container">
             {multiline ? (
-              <textarea
-                ref={textareaRef}
-                id={id}
-                value={internalValue}
-                className={getClassNames(`ktc-textfield-input`, `ktc-textfield-input--${color}`)}
-                placeholder={showPlaceholder ? placeholder : ''}
-                required={required}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={disabled}
-                onChange={handleChange}
-                rows={rows || 1}
-                {...props}
-              />
+              <textarea ref={textareaRef} rows={rows ?? 1} {...commonProps} />
             ) : (
               <>
                 <input
                   type={type === 'password' && showPassword ? 'text' : type}
-                  id={id}
-                  value={internalValue}
-                  className={getClassNames(`ktc-textfield-input`, `ktc-textfield-input--${color}`)}
-                  placeholder={showPlaceholder ? placeholder : ''}
-                  required={required}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  disabled={disabled}
-                  onChange={handleChange}
-                  {...props}
+                  {...commonProps}
                 />
                 {type === 'password' && (
                   <button
