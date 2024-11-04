@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import React, {ReactNode} from 'react';
 import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
 import { ButtonProps } from './Button';

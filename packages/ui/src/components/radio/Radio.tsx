@@ -1,39 +1,57 @@
-import React from 'react'
-import './radio.css'
-import '../../styles/ktcTheme.scss'
+import React,  { HTMLAttributes } from 'react'
+import './radio.scss'
+import '@kt-cloud-front/ui/styles/ktcTheme.scss'
 
 export interface RadioProps {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
   disabled?: boolean
-  name?: string
+  id?: string
+  name?: any
+  label?: string
   size?: 'small' | 'medium' | 'large'
   value?: string
-  onChange?: () => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Radio = (
   {
     color = 'primary',
     disabled = false,
+    id,
+    label,
     name,
     size = 'medium',
     value,
     onChange,
     ...props
   }: RadioProps) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e)
+    }
+  }
+
   return (
-    // <>
-      <input
-        type='radio'
-        disabled={disabled}
-        name={name}
-        value={value}
-        onChange={onChange}
-        className={[`storybook-radio-primary`].join(' ')}
-      />
-    // </>
+    <div style={{display: "inline-flex", alignItems: 'center', justifyContent: 'center'}}>
+      <span className={[`storybook-radio-focus`].join(' ')}>
+        <input
+          type='radio'
+          name={name || ''}
+          disabled={!!disabled}
+          id={id || ''}
+          value={value || ''}
+          onChange={handleChange}
+          className={[`storybook-radio-color-${color}`, `storybook-radio-size-${size}`].join(' ')}
+        />
+      </span>
+      <label
+        className={[`storybook-font-size-${size}`].join(' ')}
+        // for={id}
+      >
+        {label}
+      </label>
+    </div>
   )
 }
-
- /*<label style={{ fontSize: `var(--ktc-font-size-${size})` }}>{label}</label>*/
        

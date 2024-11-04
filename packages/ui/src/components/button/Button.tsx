@@ -24,19 +24,21 @@ export const Button = (
     variant = 'filled',
     size = 'medium',
     onClick,
+    startIcon,
+    endIcon,
     ...props
   }: ButtonProps) => {
   const buttonContent = (
     <>
-      {props.startIcon && (
+      {startIcon && (
         <span className={['storybook-icon-button-start'].join(' ')}>
-          {props.startIcon}
+          {startIcon}
         </span>
       )}
       <span>{label}</span>
-      {props.endIcon && (
+      {endIcon && (
         <span className={['storybook-icon-button-end'].join(' ')}>
-          {props.endIcon}
+          {endIcon}
         </span>
       )}
     </>

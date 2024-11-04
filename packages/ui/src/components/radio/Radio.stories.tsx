@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react'
-import { RadioProps } from './Radio'
 import { Radio } from './Radio'
+import { RadioProps } from './Radio'
 import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
@@ -40,13 +40,29 @@ type Story = StoryObj<RadioProps>
 
 export const Default: Story = {
   args: {
-
+    value: 'Apple',
+    label: 'apple'
   },
 }
 
 export const Color: Story = {
-  args: { 
-    color: 'secondary',
-  },
+  render: () => {
+    const colorGroup = colorOptions.map((color) => <Radio value={color} label={color} color={color} />)
+    return <StoryContainer items={colorGroup} />
+  }
+}
+
+export const Size: Story = {
+  render: () => {
+    const sizeGroup = sizeOptions.map((size) => <Radio value={size} label={size} size={size} />)
+    return <StoryContainer items={sizeGroup} />
+  }
+}
+
+export const Disabled: Story = {
+  args: {
+    label: 'disabled',
+    disabled: true
+  }
 }
 
