@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TextField } from './TextField'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'success', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
@@ -115,7 +115,7 @@ export const Variant: Story = {
     const variantGroup = variantOptions.map((variant) => (
       <TextField label={variant} variant={variant} placeholder={variant} />
     ))
-    return <StoryContainer items={variantGroup} />
+    return <StoryTemplate items={variantGroup} />
   },
   parameters: {
     docs: {
@@ -131,7 +131,7 @@ export const Variant: Story = {
 export const Color: Story = {
   render: () => {
     const colorGroup = variantOptions.map((variant) => (
-      <StoryContainer
+      <StoryTemplate
         key={variant}
         items={colorOptions.map((color) => (
           <TextField
@@ -162,7 +162,7 @@ export const Size: Story = {
     const sizeGroup = sizeOptions.map((size) => (
       <TextField label={size} size={size} placeholder={size} />
     ))
-    return <StoryContainer items={sizeGroup} />
+    return <StoryTemplate items={sizeGroup} />
   },
   parameters: {
     docs: {
@@ -186,7 +186,7 @@ export const Multiline: Story = {
         placeholder={'multiline TextField'}
       />
     ))
-    return <StoryContainer items={variantGroup} />
+    return <StoryTemplate items={variantGroup} />
   },
   parameters: {
     docs: {

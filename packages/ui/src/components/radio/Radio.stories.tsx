@@ -1,12 +1,12 @@
 import type { StoryObj } from '@storybook/react'
 import { Radio } from './Radio'
 import { RadioProps } from './Radio'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 interface IMeta {
-  title: string;
+  title: string
   component: object
   parameters: object
   tags: string[]
@@ -31,7 +31,7 @@ const meta: IMeta = {
       description: 'radio의 크기를 설정합니다.',
       control: { type: 'select' },
     },
-  }
+  },
 }
 
 export default meta
@@ -41,28 +41,29 @@ type Story = StoryObj<RadioProps>
 export const Default: Story = {
   args: {
     value: 'Apple',
-    label: 'apple'
+    label: 'apple',
   },
 }
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => <Radio value={color} label={color} color={color} />)
-    return <StoryContainer items={colorGroup} />
-  }
+    const colorGroup = colorOptions.map((color) => (
+      <Radio value={color} label={color} color={color} />
+    ))
+    return <StoryTemplate items={colorGroup} />
+  },
 }
 
 export const Size: Story = {
   render: () => {
     const sizeGroup = sizeOptions.map((size) => <Radio value={size} label={size} size={size} />)
-    return <StoryContainer items={sizeGroup} />
-  }
+    return <StoryTemplate items={sizeGroup} />
+  },
 }
 
 export const Disabled: Story = {
   args: {
     label: 'disabled',
-    disabled: true
-  }
+    disabled: true,
+  },
 }
-

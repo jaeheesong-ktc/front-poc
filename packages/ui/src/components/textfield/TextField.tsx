@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Icons } from '@storybook/components' // Import Storybook's Icons component
+import { Icons } from '@storybook/components'
 import './textfield.scss'
 
 type ColorOptions = 'primary' | 'secondary' | 'error' | 'success' | 'warning'

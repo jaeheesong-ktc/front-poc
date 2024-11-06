@@ -1,15 +1,15 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react'
 import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
-import { ButtonProps } from './Button';
+import { ButtonProps } from './Button'
 import { TrashIcon } from '@storybook/icons'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 const variantOptions = ['filled', 'outlined', 'standard'] as const
 interface IMeta {
-  title: string;
+  title: string
   component: object
   parameters: object
   tags: string[]
@@ -62,71 +62,89 @@ const meta: IMeta = {
     },
     onClick: {
       description: 'button이 눌렸을 때, onClick 이벤트를 설정합니다.',
-    }
-  }
+    },
+  },
 }
 export default meta
 
 type Story = StoryObj<ButtonProps>
 
 export const Default: Story = {
-  args: { 
+  args: {
     label: 'Button',
   },
 }
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => <Button label={color} color={color}/>)
-    return <StoryContainer items={colorGroup} />
-  }
+    const colorGroup = colorOptions.map((color) => <Button label={color} color={color} />)
+    return <StoryTemplate items={colorGroup} />
+  },
 }
 
 export const Disable: Story = {
   render: () => {
-    const variantGroup = variantOptions.map((variant) => <Button label='disabled' variant={variant} disabled/>)
-    return <StoryContainer items={variantGroup} />
-  }
+    const variantGroup = variantOptions.map((variant) => (
+      <Button label="disabled" variant={variant} disabled />
+    ))
+    return <StoryTemplate items={variantGroup} />
+  },
 }
 
 export const Loading: Story = {
   render: () => {
     const loadingGroup = variantOptions.map((variant) => <Button variant={variant} loading />)
-    return <StoryContainer items={loadingGroup} />
-  }
+    return <StoryTemplate items={loadingGroup} />
+  },
 }
 
 export const Variant: Story = {
   render: () => {
     const colorGroup = colorOptions.map((color) => (
-      <StoryContainer
+      <StoryTemplate
         key={color}
         items={variantOptions.map((variant) => (
-          <Button label={variant} variant={variant} color={color}/>
-      ))}
+          <Button label={variant} variant={variant} color={color} />
+        ))}
       />
     ))
     return <>{colorGroup}</>
-  }
+  },
 }
 
 export const Size: Story = {
   render: () => {
-    const sizeGroup = sizeOptions.map((size) => <Button label={size} color='primary' variant='filled' size={size}/>)
-    return <StoryContainer items={sizeGroup} />
-  }
+    const sizeGroup = sizeOptions.map((size) => (
+      <Button label={size} color="primary" variant="filled" size={size} />
+    ))
+    return <StoryTemplate items={sizeGroup} />
+  },
 }
 
 export const StartIcon: Story = {
   render: () => {
-    const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='primary' variant={variant} startIcon={<TrashIcon size={16}/>}/>)
-    return <StoryContainer items={IconGroup} />
-  }
+    const IconGroup = variantOptions.map((variant) => (
+      <Button
+        label="Delete"
+        color="primary"
+        variant={variant}
+        startIcon={<TrashIcon size={16} />}
+      />
+    ))
+    return <StoryTemplate items={IconGroup} />
+  },
 }
 
 export const EndIcon: Story = {
   render: () => {
-    const IconGroup = variantOptions.map((variant) => <Button label='Delete' color='secondary' variant={variant} endIcon={<TrashIcon size={16}/>}/>)
-    return <StoryContainer items={IconGroup} />
-  }
+    const IconGroup = variantOptions.map((variant) => (
+      <Button
+        label="Delete"
+        color="secondary"
+        variant={variant}
+        endIcon={<TrashIcon size={16} />}
+      />
+    ))
+    return <StoryTemplate items={IconGroup} />
+  },
 }

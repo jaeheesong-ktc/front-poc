@@ -2,13 +2,13 @@ import type { StoryObj } from '@storybook/react'
 import { IconButton } from './IconButton'
 import { IconButtonProps } from './IconButton'
 import { TrashIcon } from '@storybook/icons'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 const variantOptions = ['filled', 'outlined', 'standard'] as const
 interface IMeta {
-  title: string;
+  title: string
   component: object
   parameters: object
   tags: string[]
@@ -37,30 +37,32 @@ const meta: IMeta = {
     },
     onClick: {
       description: 'button이 눌렸을 때, onClick 이벤트를 설정합니다.',
-    }
-  }
+    },
+  },
 }
 export default meta
 
-type Story = StoryObj<IconButtonProps>;
+type Story = StoryObj<IconButtonProps>
 
 export const Default: Story = {
   args: {
-    icon: <TrashIcon size={20}/>,
-    href: 'https://www.naver.com'
-  }
-};
+    icon: <TrashIcon size={20} />,
+    href: 'https://www.naver.com',
+  },
+}
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => <IconButton color={color} icon={<TrashIcon size={20}/>}/>)
-    return <StoryContainer items={colorGroup} />
-  }
-};
+    const colorGroup = colorOptions.map((color) => (
+      <IconButton color={color} icon={<TrashIcon size={20} />} />
+    ))
+    return <StoryTemplate items={colorGroup} />
+  },
+}
 
 export const Disabled: Story = {
   args: {
-    icon: <TrashIcon size={20}/>,
-    disabled: true
-  }
-};
+    icon: <TrashIcon size={20} />,
+    disabled: true,
+  },
+}

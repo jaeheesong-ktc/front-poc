@@ -5,9 +5,10 @@ const StyledContainer: React.FC<{ items: React.ReactNode[] }> = ({ items }) => {
     <div
       style={{
         display: 'flex',
-        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
         gap: '40px',
-        margin: '40px',
+        margin: '40px auto',
         alignItems: 'center',
       }}
     >
