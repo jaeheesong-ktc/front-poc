@@ -214,63 +214,63 @@
 
 /* [COMPONENT TOKEN] text typography */
 .ktc-color-text-primary {
-  color: var(--ktc-color-primary)
+  color: var(--ktc-color-primary);
 }
 
 .ktc-color-text-secondary {
-  color: var(--ktc-color-secondary)
+  color: var(--ktc-color-secondary);
 }
 
 .ktc-color-text-background {
-  color: var(--ktc-color-background)
+  color: var(--ktc-color-background);
 }
 
 .ktc-color-text-warning {
-  color: var(--ktc-color-warning)
+  color: var(--ktc-color-warning);
 }
 
 .ktc-color-text-error {
-  color: var(--ktc-color-error)
+  color: var(--ktc-color-error);
 }
 
 .ktc-color-text-info {
-  color: var(--ktc-color-success)
+  color: var(--ktc-color-success);
 }
 
 .ktc-color-text-success {
-  color: var(--ktc-color-success)
+  color: var(--ktc-color-success);
 }
 
 .ktc-color-text-disabled {
-  color: var(--ktc-color-disabled)
+  color: var(--ktc-color-disabled);
 }
 
 /* [COMPONENT TOKEN] typography component token */
-.ktc-typography-heading1 {
+.ktc-typography-h1 {
   font-size: var(--ktc-font-size-3xl);
   line-height: var(--ktc-line-height-3xl);
   font-weight: var(--ktc-font-weight-semibold);
 }
 
-.ktc-typography-heading2 {
+.ktc-typography-h2 {
   font-size: var(--ktc-font-size-2xl);
   line-height: var(--ktc-line-height-2xl);
   font-weight: var(--ktc-font-weight-semibold);
 }
 
-.ktc-typography-heading3 {
+.ktc-typography-h3 {
   font-size: var(--ktc-font-size-xl);
   line-height: var(--ktc-line-height-xl);
   font-weight: var(--ktc-font-weight-semibold);
 }
 
-.ktc-typography-heading4 {
+.ktc-typography-h4 {
   font-size: var(--ktc-font-size-l);
   line-height: var(--ktc-line-height-l);
   font-weight: var(--ktc-font-weight-semibold);
 }
 
-.ktc-typography-heading5 {
+.ktc-typography-h5 {
   font-size: var(--ktc-font-size-m);
   line-height: var(--ktc-line-height-m);
   font-weight: var(--ktc-font-weight-semibold);
@@ -304,4 +304,10 @@
   font-size: var(--ktc-font-size-3xs);
   line-height: var(--ktc-line-height-3xs);
   font-weight: var(--ktc-font-weight-regular);
+}
+
+.ktc-typography-overline {
+  font-size: var(--ktc-font-size-xs);
+  font-weight: var(--ktc-font-weight-regular);
+  text-transform: uppercase;
 }

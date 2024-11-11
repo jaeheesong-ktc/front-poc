@@ -8,7 +8,6 @@ const variantOptions = [
   'h3',
   'h4',
   'h5',
-  'h6',
   'subtitle1',
   'subtitle2',
   'body1',
@@ -77,6 +76,15 @@ export const Default: Story = {
       <Typography {...args} />
     </div>
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+          <Typography {...args} />
+        `,
+      },
+    },
+  },
 }
 
 export const Variant: Story = {
