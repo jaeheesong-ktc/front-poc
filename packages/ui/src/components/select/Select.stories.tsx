@@ -36,8 +36,7 @@ const meta: IMeta = {
       description: 'Select 유형을 설정합니다.',
     },
     size: {
-      description: 'Select Label을 설정합니다.',
-      control: 'text',
+      description: 'Select 사이즈를 설정합니다.',
     },
     error: {
       description: 'Select의 Error 여부를 설정합니다..',
@@ -48,16 +47,15 @@ const meta: IMeta = {
       control: 'boolean',
     },
     disabled: {
-      description:
-        'Text Field 의 Error 여부를 설정합니다. 사용자 Feedback 을 위한 helperText 가 사용될 수 있습니다.',
+      description: 'Select의 비활성화 여부를 설정합니다. ',
       control: 'boolean',
     },
     readOnly: {
       description: 'Select의 읽기 전용 여부를 설정합니다.',
-      control: 'text',
+      control: 'boolean',
     },
     multiple: {
-      description: 'Select의 다중 선택 여부를 설정합니다..',
+      description: 'Select의 다중 선택 여부를 설정합니다.',
       control: 'boolean',
     },
     placeholder: {
@@ -86,7 +84,7 @@ const Container = ({ children }: { children: ReactNode }) => {
         paddingBlock: '50px',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '100px' }}>{children}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '50px' }}>{children}</div>
     </div>
   )
 }
@@ -109,23 +107,37 @@ const DefaultTemplate = (args: SelectProps) => {
 const AlignTemplate = (args: SelectProps) => {
   return (
     <Container>
-      <Select {...args} labelAlign="vertical" />
-      <Select {...args} labelAlign="horizontal" />
+      <Select {...args} label="vertical" labelAlign="vertical" />
+      <Select {...args} label="horizontal" labelAlign="horizontal" />
     </Container>
   )
 }
 
 const VariantTemplate = (args: SelectProps) => (
   <Container>
-    <Select {...args} variant="outlined" />
-    <Select {...args} variant="standard" />
+    <Select {...args} label="outlined" variant="outlined" />
+    <Select {...args} label="standard" variant="standard" />
   </Container>
 )
 
 const SizeTemplate = (args: SelectProps) => (
   <Container>
-    <Select {...args} size="small" />
-    <Select {...args} size="medium" />
+    <Select {...args} label="small" size="small" />
+    <Select {...args} label="medium" size="medium" />
+  </Container>
+)
+
+const StatusTemplate = (args: SelectProps) => (
+  <Container>
+    <Select {...args} label={'disabled'} disabled={true} />
+    <Select {...args} label={'readOnly'} readOnly={true} />
+    <Select {...args} label={'error'} error />
+  </Container>
+)
+
+const MultipleTemplate = (args: SelectProps) => (
+  <Container>
+    <Select {...args} label={'Multi Select'} multiple />
   </Container>
 )
 
@@ -152,7 +164,6 @@ export const Default: Story = {
 export const LabelAlign: Story = {
   render: AlignTemplate,
   args: {
-    label: 'Label',
     placeholder: '선택해주세요',
     required: true,
     value: '',
@@ -202,5 +213,46 @@ export const Size: Story = {
     menuKey: 'value',
     menuLabel: 'label',
     helperText: 'This is HelperText',
+  },
+}
+
+export const Status: Story = {
+  render: StatusTemplate,
+  args: {
+    label: 'Label',
+    placeholder: '선택해주세요',
+    variant: 'outlined',
+    value: { label: '망고', value: 'mango' },
+    menuList: [
+      { label: '사과', value: 'apple' },
+      { label: '망고', value: 'mango' },
+      { label: '수박', value: 'watermelon' },
+    ],
+    menuKey: 'value',
+    menuLabel: 'label',
+    helperText: 'This is HelperText',
+  },
+}
+
+export const MultiSelect: Story = {
+  render: MultipleTemplate,
+  args: {
+    label: 'Label',
+    placeholder: '선택해주세요',
+    variant: 'outlined',
+    required: true,
+    value: '',
+    menuList: [
+      { label: '사과', value: 'apple' },
+      { label: '망고', value: 'mango' },
+      { label: '수박', value: 'watermelon' },
+      { label: '포도', value: 'grape' },
+      { label: '배', value: 'pear' },
+    ],
+    menuKey: 'value',
+    menuLabel: 'label',
+    size: 'small',
+    helperText: 'This is HelperText',
+    multiple: true,
   },
 }

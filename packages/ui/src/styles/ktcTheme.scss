@@ -245,6 +245,10 @@
   color: var(--ktc-color-disabled);
 }
 
+.ktc-color-background-disabled {
+  background-color: var(--ktc-color-gray-200)
+}
+
 /* [COMPONENT TOKEN] typography component token */
 .ktc-typography-h1 {
   font-size: var(--ktc-font-size-3xl);

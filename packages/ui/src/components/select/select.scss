@@ -15,7 +15,6 @@
     flex-direction: column;
     gap: 0.5em;
     width: 100%;
-    max-width: 200px;
   }
 }
 
@@ -37,6 +36,7 @@
 .ktc-select-control {
   position: relative;
   min-width: 200px;
+  max-width: 200px;
   width: 100%;
 }
 
@@ -45,15 +45,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 
   &:focus,
   &:hover {
     border-color: var(--ktc-color-primary);
-  }
-
-  &-chevronIcon-open {
-    transform: rotate(180deg);
   }
 
   &-small {
@@ -62,7 +59,7 @@
   }
 
   &-medium {
-    padding: 12px 10px;
+    padding: 10px 10px;
     font-size: var(--ktc-font-size-s);
   }
 
@@ -73,6 +70,23 @@
 
   &-standard {
     border-bottom: 1px solid var(--ktc-color-gray-300);
+  }
+
+  &-chevronIcon {
+    min-width: 15px;
+
+    &-open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-multiple-chip {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-top: -3px;
+    margin-bottom: -3px;
   }
 }
 
@@ -127,8 +141,38 @@
 /* Helper Text */
 .ktc-select-helperText {
   width: 100%;
-  max-width: 200px;
+  min-width: 100px;
   word-wrap: anywhere;
   color: var(--ktc-color-text-secondary);
   @extend .ktc-typography-body2;
+}
+
+.ktc-select-disabled {
+  .ktc-select-controlBox {
+    pointer-events: none;
+    @extend .ktc-color-text-disabled;
+    @extend .ktc-color-background-disabled;
+  }
+}
+
+.ktc-select-readonly {
+  .ktc-select-controlBox {
+    pointer-events: none;
+  }
+}
+
+.ktc-select-error {
+  .ktc-select-controlBox {
+    @extend .ktc-select-controlBox;
+    border-color: var(--ktc-color-error);
+
+    &:focus,
+    &:hover {
+      border-color: var(--ktc-color-error);
+    }
+  }
+
+  .ktc-select-helperText {
+    color: var(--ktc-color-text-error);
+  }
 }
