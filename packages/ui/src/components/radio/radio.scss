@@ -24,18 +24,20 @@
   -webkit-appearance: none;
   border: 2px solid #737373;
   border-radius: 50%;
-  position: relative;
   cursor: pointer;
+  margin: 0;
 
   &:checked {
     border: 2px solid $color;
   }
 
+  /* 선택되었을 때의 동그라미색 */
   &:checked::after {
     content: '';
-    background-color: $color; /* 선택되었을 때의 배경색 */
+    background-color: $color;
     border-radius: 50%;
-    position: absolute;
+    display: inline-block;
+    position: relative;
   }
 
   &:checked:hover {
@@ -51,8 +53,15 @@
     -webkit-appearance: none;
     border: 2px solid #9f9f9f;
     border-radius: 50%;
-    position: relative;
     cursor: default;
+  }
+
+  &:checked:disabled:hover {
+    border: 2px solid #9f9f9f;
+  }
+
+  &:checked:disabled::after {
+    background-color: #9f9f9f;
   }
 }
 
@@ -77,36 +86,31 @@ $colors: (
 @mixin radio-size($width, $height, $top, $left, $checked-width, $checked-height) {
   width: $width;
   height: $height;
-  top: $top;
-  left: $left;
+  //top: $top;
+  //left: $left;
 
   &:checked::after {
     content: '';
     width: $checked-width;
     height: $checked-height;
-    top: 3px;
-    left: 3px;
+    top: $top;
+    left: $left;
   }
 }
 
 .storybook-radio-size {
-  &-small {
-    @include radio-size(18px, 18px, 10px, 8px, 8px, 8px);
-  }
-  &-medium {
-    @include radio-size(20px, 20px, 9px, 7px, 10px, 10px);
-  }
-  &-large {
-    @include radio-size(23px, 23px, 8px, 6px, 13px, 13px);
-  }
+  &-small { @include radio-size(18px, 18px, -1px, 3px, 8px, 8px) }
+  &-medium { @include radio-size(20px, 20px, 1px, 3px, 10px, 10px) }
+  &-large { @include radio-size(23px, 23px, 3px, 3px, 13px, 13px) }
 }
 
 /* font size------------------------------------ */
 @mixin font-size($size) {
   font-size: $size;
-  display: inherit;
+  display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
 }
 
 .storybook-font-size {

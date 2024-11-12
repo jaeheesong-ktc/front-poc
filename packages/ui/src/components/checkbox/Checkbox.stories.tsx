@@ -1,3 +1,4 @@
+import React from 'react';
 import type { StoryObj } from '@storybook/react'
 import { Checkbox } from './Checkbox'
 import { CheckboxProps } from './Checkbox'
@@ -23,8 +24,19 @@ const meta: IMeta = {
     layout: 'centered',
   },
   tags: ['autodocs', '!dev'],
-  args: {},
-  argTypes: {},
+  args: {
+
+  },
+  argTypes: {
+    color: {
+      description: 'checkbox의 색상을 설정합니다.',
+      control: { type: 'select' },
+    },
+    size: {
+      description: 'checkbox의 크기를 설정합니다.',
+      control: { type: 'select' },
+    },
+  }
 }
 
 export default meta
@@ -35,26 +47,39 @@ export const Default: Story = {
   args: {
     value: 'Apple',
     label: 'apple',
+    // checked: true,
+    // defaultChecked: true,
+    // indeterminate: true,
   },
 }
 
 export const Size: Story = {
   render: () => {
-    const sizeGroup = sizeOptions.map((size) => <Checkbox label={size} size={size} />)
-    return <StoryTemplate items={sizeGroup} />
-  },
+    const sizeGroup = sizeOptions.map((size) => <Checkbox id={size} label={size} size={size} />)
+    return <StoryContainer items={sizeGroup} />
+  }
 }
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => <Checkbox label={color} color={color} />)
-    return <StoryTemplate items={colorGroup} />
-  },
+    const colorGroup = colorOptions.map((color) => <Checkbox id={color} label={color} color={color} />)
+    return <StoryContainer items={colorGroup} />
+  }
 }
 
 export const Disabled: Story = {
-  args: {
-    label: 'disabled',
-    disabled: true,
+  render: () => {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '40px',
+        margin: '40px',
+        alignItems: 'center',
+      }}>
+        <Checkbox id={'checked-disabled'} checked disabled label={'disabled'} />
+        <Checkbox id={'disabled'} disabled label={'disabled'} />
+      </div>
+    )
   },
 }

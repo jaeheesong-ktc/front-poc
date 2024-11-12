@@ -1,7 +1,8 @@
 import type { StoryObj } from '@storybook/react'
 import { Radio } from './Radio'
 import { RadioProps } from './Radio'
-import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import React from "react";
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
@@ -62,8 +63,18 @@ export const Size: Story = {
 }
 
 export const Disabled: Story = {
-  args: {
-    label: 'disabled',
-    disabled: true,
-  },
+  render: () => {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '40px',
+        margin: '40px',
+        alignItems: 'center',
+      }}>
+        <Radio checked disabled label={'disabled'} />
+        <Radio disabled label={'disabled'} />
+      </div>
+    )
+  }
 }
