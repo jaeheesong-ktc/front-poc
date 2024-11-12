@@ -4,7 +4,7 @@ import './radiogroup.scss'
 
 export interface RadioGroupProps {
   direction?: 'row' | 'column'
-  name?: any
+  name?: string
   children?: ReactNode
 }
 
@@ -15,15 +15,10 @@ export const RadioGroup = ({
                              ...props
                            }: RadioGroupProps) => {
   return (
-    <div className={`storybook-radio-group-${direction}`}>
-      {React.Children.map(children, (child: any) => {
-        if (React.isValidElement(child) && child.type === Radio) {
-          return React.cloneElement(child, {
-            name,
-          })
-        }
-        return child
-      })}
+    <div className={`radio-group ${direction}`}>
+      {React.Children.map(children, (child) =>
+        React.cloneElement(child as React.ReactElement, { name })
+      )}
     </div>
   )
 }

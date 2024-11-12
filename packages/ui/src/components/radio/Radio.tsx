@@ -6,7 +6,7 @@ export interface RadioProps {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
   checked?: boolean
   disabled?: boolean
-  // id?: string
+  id?: string
   name?: any
   label?: string
   size?: 'small' | 'medium' | 'large'
@@ -19,7 +19,7 @@ export const Radio = (
     color = 'primary',
     checked,
     disabled = false,
-    // id,
+    id,
     label,
     name,
     size = 'medium',
@@ -51,7 +51,7 @@ export const Radio = (
           type='radio'
           name={name || ''}
           disabled={!!disabled}
-          // id={id || ''}
+          id={id || ''}
           value={value || ''}
           onChange={handleChange}
           className={[`storybook-radio-color-${color}`, `storybook-radio-size-${size}`].join(' ')}

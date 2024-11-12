@@ -1,8 +1,7 @@
 import type { StoryObj } from '@storybook/react'
 import { Radio } from './Radio'
 import { RadioProps } from './Radio'
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
-import React from "react";
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
@@ -57,6 +56,7 @@ export const Color: Story = {
 
 export const Size: Story = {
   render: () => {
+    // eslint-disable-next-line react/jsx-key
     const sizeGroup = sizeOptions.map((size) => <Radio value={size} label={size} size={size} />)
     return <StoryTemplate items={sizeGroup} />
   },

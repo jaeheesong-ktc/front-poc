@@ -2,7 +2,7 @@ import React from 'react';
 import type { StoryObj } from '@storybook/react'
 import { Switch } from './Switch'
 import { SwitchProps } from "./Switch"
-import StoryContainer from '@kt-cloud-front/ui/common/StoryContainer'
+import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const

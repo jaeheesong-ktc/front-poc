@@ -55,15 +55,17 @@ export const Default: Story = {
 
 export const Size: Story = {
   render: () => {
+    // eslint-disable-next-line react/jsx-key
     const sizeGroup = sizeOptions.map((size) => <Checkbox id={size} label={size} size={size} />)
-    return <StoryContainer items={sizeGroup} />
+    return <StoryTemplate items={sizeGroup} />
   }
 }
 
 export const Color: Story = {
   render: () => {
+    // eslint-disable-next-line react/jsx-key
     const colorGroup = colorOptions.map((color) => <Checkbox id={color} label={color} color={color} />)
-    return <StoryContainer items={colorGroup} />
+    return <StoryTemplate items={colorGroup} />
   }
 }
 
