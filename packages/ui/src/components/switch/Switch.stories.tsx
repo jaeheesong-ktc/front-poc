@@ -42,6 +42,34 @@ type Story = StoryObj<SwitchProps>
 
 export const Default: Story = {
   args: {
-
+    label: '알람',
+    name: 'alert'
   },
+}
+
+export const Color: Story = {
+  render: () => {
+    const colorGroup = colorOptions.map((color) => (
+      // eslint-disable-next-line react/jsx-key
+      <Switch label={color} color={color} name={color} onChange={(e) => { console.log(e.target) }}/>
+    ))
+    return <StoryTemplate items={colorGroup} />
+  },
+}
+
+export const Disabled: Story = {
+  render: () => {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '40px',
+        margin: '40px',
+        alignItems: 'center',
+      }}>
+        <Switch disabled label={'disabled'}/>
+        <Switch disabled label={'disabled'}/>
+      </div>
+    )
+  }
 }

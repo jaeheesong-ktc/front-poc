@@ -1,0 +1,102 @@
+.switch-label {
+  &-enabled {
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+    gap: 0.7rem;
+    cursor: pointer;
+  }
+
+  &-disabled {
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+    gap: 0.7rem;
+    cursor: not-allowed;
+  }
+}
+
+@mixin storybook-switch($color) {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  position: relative;
+  border-radius: 20px;
+  width: 40px;
+  height: 24px;
+  background-color: lightgray;
+  box-shadow: 1px 2px 3px #00000020;
+  margin: 0;
+
+  // 원
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: left 250ms linear;
+    transform: scale(0.8);
+    box-shadow: 1px 2px 3px #00000020;
+  }
+
+  &:checked {
+    background-color: $color;
+  }
+  // checked 되었을 때, 원
+  &:checked::before {
+    background-color: white;
+    left: 1.2em;
+  }
+
+  // not-checked 상태로 disabled(배경, 원)
+  &:disabled {
+    opacity: 0.7;
+    background-color: lightgray;
+    cursor: not-allowed;
+  }
+  &:disabled:before {
+    opacity: 0.7;
+    background-color: white;
+  }
+
+  // checked 상태로 disabled(배경, 원)
+  &:checked:disabled {
+    opacity: 0.7;
+    background-color: $color;
+    cursor: not-allowed;
+  }
+  &:checked:disabled:before {
+    opacity: 0.7;
+    background-color: white;
+  }
+
+  &:disabled + span {
+    color: var(--ktc-color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  &:enabled:hover {
+    cursor: pointer;
+  }
+}
+
+$colors: (
+        primary: var(--ktc-color-primary),
+        secondary: var(--ktc-color-secondary),
+        success: var(--ktc-color-success),
+        warning:  var(--ktc-color-warning),
+        error: var(--ktc-color-error),
+);
+
+.switch-color {
+  @each $name, $color in $colors {
+    &-#{$name} {
+      @include storybook-switch($color)
+    }
+  }
+}

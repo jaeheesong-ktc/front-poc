@@ -52,6 +52,13 @@ export const Default: Story = {
     // indeterminate: true,
   },
 }
+export const defaluteChecked: Story = {
+  args: {
+    value: 'Apple',
+    label: 'apple',
+    defaultChecked: true,
+  },
+}
 
 export const Size: Story = {
   render: () => {

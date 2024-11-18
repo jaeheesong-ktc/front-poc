@@ -14,10 +14,17 @@ export const RadioGroup = ({
                              children,
                              ...props
                            }: RadioGroupProps) => {
+  // return (
+  //   <div className={`radio-group ${direction}`}>
+  //     {React.Children.map(children, (child) =>
+  //       React.cloneElement(child as React.ReactElement, { name })
+  //     )}
+  //   </div>
+  // )
   return (
-    <div className={`radio-group ${direction}`}>
+    <div className={`storybook-radio-group-${direction}`}>
       {React.Children.map(children, (child) =>
-        React.cloneElement(child as React.ReactElement, { name })
+         React.cloneElement(child as React.ReactElement, { name })
       )}
     </div>
   )

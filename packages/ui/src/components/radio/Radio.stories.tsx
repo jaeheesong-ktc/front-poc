@@ -45,6 +45,14 @@ export const Default: Story = {
   },
 }
 
+export const DefaultChecked: Story = {
+  args: {
+    value: 'Apple',
+    label: 'apple',
+    checked: true,
+  },
+}
+
 export const Color: Story = {
   render: () => {
     const colorGroup = colorOptions.map((color) => (
