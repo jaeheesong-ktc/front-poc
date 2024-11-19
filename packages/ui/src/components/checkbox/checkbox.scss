@@ -2,12 +2,12 @@
   // 기본 체크박스 스타일 제거
   appearance: none;
   -webkit-appearance: none;
-  width: 13px;
-  height: 13px;
+
   border: 1.2px solid #888888;
   border-radius: 2px;
   cursor: pointer;
   position: relative;
+  margin: 0;
 
   // 체크되었을 때의 스타일
   &:checked {
@@ -21,13 +21,14 @@
 
     // checked && disabled 상태일 때
     &:checked {
-      background-color: var(--ktc-color-gray-400);
+      opacity: 0.7;
       border-color: var(--ktc-color-gray-400);
+      background-color: var(--ktc-color-gray-400);
     }
 
     // unchecked && disabled 상태일 때
     &:not(:checked) {
-      background-color: transparent;
+      opacity: 0.7;
       border-color: var(--ktc-color-gray-400);
     }
   }
@@ -35,77 +36,80 @@
 
 /* check color------------------------------------ */
 $colors: (
-        primary: blue,
-        secondary: teal,
-        success: teal,
-        warning: yellow,
-        error: red
+        primary,
+        secondary,
+        success,
+        warning,
+        error
 );
 
 .storybook-check-color {
-  @each $name, $color in $colors {
-    &-#{$name} {
-      @include storybook-check(var(--ktc-color-#{$name}))
+  @each $color in $colors {
+    &-#{$color} {
+      @include storybook-check(var(--ktc-color-#{$color}))
     }
   }
 }
 
-/* check size------------------------------------ */
-// 체크 표시 모양을 위한 mixin
-@mixin checkmark-style($top, $left, $transform, $check-width, $check-height, $check-border) {
-  content: '';
-  position: absolute;
-  top: $top;
-  left: $left;
-  transform: $transform;
-  width: $check-width;
-  height: $check-height;
-  border: solid white;
-  border-width: 0 $check-border $check-border 0; // 체크 표시 모양
-}
-
-@mixin check-size($width, $height, $top, $left, $transform, $check-width, $check-height, $check-border) {
+/* check style + size------------------------------------ */
+@mixin check-style-size($width, $height, $top, $left, $transform, $check-width, $check-height, $check-border) {
   width: $width;
   height: $height;
 
   // 체크되었을 때의 스타일
   &:checked {
     &::after {
-      @include checkmark-style($top, $left, $transform, $check-width, $check-height, $check-border); // 체크 표시 스타일 적용
-    }
-  }
-
-  // disabled 상태일 때 스타일
-  &:disabled {
-    &::after {
-      @include checkmark-style($top, $left, $transform, $check-width, $check-height, $check-border); // 체크 표시 스타일 적용
+      content: '';
+      position: absolute;
+      top: $top;
+      left: $left;
+      transform: $transform;
+      width: $check-width;
+      height: $check-height;
+      border: solid white;
+      border-width: 0 $check-border $check-border 0; // 체크 표시 모양
     }
   }
 }
 
 .storybook-check-size {
-  &-small { @include check-size(16px, 16px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 3px, 6.5px, 2px) }
-  &-medium { @include check-size(20px, 20px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 5px, 10px, 2px) }
-  &-large { @include check-size(24px, 24px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 6px, 12px, 3px) }
-  &-determinate-small { @include check-size(16px, 16px, 40%, 20%, 0, 6px, 0px, 2px) }
-  &-determinate-medium { @include check-size(20px, 20px, 45%, 20%, 0, 9px, 0px, 2px) }
-  &-determinate-large { @include check-size(24px, 24px, 45%, 15%, 0, 12px, 0px, 3px) }
+  &-small { @include check-style-size(16px, 16px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 3px, 6.5px, 2px) }
+  &-medium { @include check-style-size(20px, 20px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 5px, 10px, 2px) }
+  &-large { @include check-style-size(24px, 24px, 40%, 50%, translate(-50%, -50%) rotate(40deg), 6px, 12px, 3px) }
+  &-determinate-small { @include check-style-size(16px, 16px, 40%, 20%, 0, 6px, 0px, 2px) }
+  &-determinate-medium { @include check-style-size(20px, 20px, 45%, 20%, 0, 9px, 0px, 2px) }
+  &-determinate-large { @include check-style-size(24px, 24px, 45%, 15%, 0, 12px, 0px, 3px) }
 }
 
 /* font size------------------------------------ */
+$font-sizes: (
+        'small': var(--ktc-font-size-s),
+        'medium': var(--ktc-font-size-m),
+        'large': var(--ktc-font-size-l)
+);
+
 @mixin font-size($size) {
   font-size: $size;
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 4px;
-  //&:hover {
-  //  cursor: pointer;
-  //}
+  gap: 10px;
 }
 
-.storybook-font-size {
-  &-small { @include font-size(var(--ktc-font-size-s)) }
-  &-medium { @include font-size(var(--ktc-font-size-m)) }
-  &-large { @include font-size(var(--ktc-font-size-l)) }
+.storybook-font {
+  @each $name, $size in $font-sizes {
+    &-#{$name} {
+
+      &-enabled {
+        @include font-size($size);
+        cursor: pointer;
+      }
+
+      &-disabled {
+        @include font-size($size);
+        color: var(--ktc-color-text-disabled);
+        cursor: not-allowed;
+      }
+    }
+  }
 }

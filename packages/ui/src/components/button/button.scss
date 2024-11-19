@@ -29,7 +29,7 @@
 
 $colors: (
         primary: blue,
-        secondary: teal,
+        secondary: grape,
         success: teal,
         warning: yellow,
         error: red
@@ -129,11 +129,4 @@ $colors: (
 .storybook-icon-button {
   &-start { @include storybook-icon-button(5px, 0px) }
   &-end { @include storybook-icon-button(0px, 5px) }
-}
-
-.storybook-button-disabled {
-  border: 0;
-  background-color: var(--ktc-color-gray-200);
-  color: var(--ktc-color-gray-500);
-  cursor: default;
 }

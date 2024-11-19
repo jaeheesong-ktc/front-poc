@@ -7,8 +7,8 @@ export interface ButtonProps {
   href?: string
   label?: string
   loading?: boolean
-  variant?: 'filled' | 'outlined' | 'standard'
   size?: 'small' | 'medium' | 'large'
+  variant?: 'filled' | 'outlined' | 'standard'
   startIcon?: ReactNode
   endIcon?: ReactNode
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -21,13 +21,20 @@ export const Button = (
     href,
     label,
     loading = false,
-    variant = 'filled',
     size = 'medium',
+    variant = 'filled',
     onClick,
     startIcon,
     endIcon,
     ...props
   }: ButtonProps) => {
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      onClick(e); // 클릭 이벤트 객체를 전달하여 호출
+    }
+  }
+
   const buttonContent = (
     <>
       {startIcon && (
@@ -57,27 +64,25 @@ export const Button = (
       </button>
     ) : href && !disabled ? (
       <a href={href}>
-        <button 
+        <button
+          type='button'
           className={[
             `storybook-button-${size}`,
             `button-${variant}-${color}`,
-          ].join(' ')}>
+          ].join(' ')}
+        >
             {buttonContent}
         </button>
       </a>
     ) : (
     <button
       type='button'
-      disabled={!!disabled}
       className={[
         `storybook-button-${size}`,
         `button-${variant}-${color}`,
       ].join(' ')}
-      onClick={(event) => {
-        if (onClick) {
-          onClick(event) // 클릭 이벤트 객체를 전달하여 호출
-        }
-      }}
+      disabled={!!disabled}
+      onClick={handleClick}
       {...props}
     >
       {buttonContent}

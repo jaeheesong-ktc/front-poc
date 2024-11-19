@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
 import { ButtonProps } from './Button'
 import { TrashIcon } from '@storybook/icons'
 import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
+const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 const variantOptions = ['filled', 'outlined', 'standard'] as const
 interface IMeta {
@@ -72,12 +72,13 @@ type Story = StoryObj<ButtonProps>
 export const Default: Story = {
   args: {
     label: 'Button',
+    onClick: () => alert('IconButton clicked'),
   },
 }
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => <Button label={color} color={color} />)
+    const colorGroup = colorOptions.map((color) => <Button label={color} color={color} href='https://www.naver.com'/>)
     return <StoryTemplate items={colorGroup} />
   },
 }
@@ -128,6 +129,7 @@ export const StartIcon: Story = {
         label="Delete"
         color="primary"
         variant={variant}
+        disabled
         startIcon={<TrashIcon size={16} />}
       />
     ))

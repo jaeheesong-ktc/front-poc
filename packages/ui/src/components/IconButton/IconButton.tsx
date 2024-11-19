@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import './icon-button.scss'
 
 export interface IconButtonProps {
@@ -17,33 +17,27 @@ export const IconButton = (
     onClick,
     ...props
   }: IconButtonProps) => {
-  return href && !disabled ? (
-    <a href={href}>
-      <button
-        type='button'
-        className={[`storybook-icon-button-${color}`].join(' ')}
-        disabled={!!disabled}
-        onClick={(event) => {
-          if (onClick) {
-            onClick(event) // 클릭 이벤트 객체를 전달하여 호출
-          }
-        }}
-      >
-        {props.icon}
-      </button>
-    </a>
-  )  : (
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      onClick(e); // 클릭 이벤트 객체를 전달하여 호출
+    }
+  }
+
+  const ButtonElement = (
     <button
       type='button'
-      className={[`storybook-icon-button-${color}`].join(' ')}
+      className={`storybook-icon-button-${color}`}
       disabled={!!disabled}
-      onClick={(event) => {
-        if (onClick) {
-          onClick(event) // 클릭 이벤트 객체를 전달하여 호출
-        }
-      }}
+      onClick={handleClick}
     >
       {props.icon}
     </button>
   )
+
+  return href && !disabled ?
+    <a href={href}>
+      {ButtonElement}
+    </a>
+   : ButtonElement
 }

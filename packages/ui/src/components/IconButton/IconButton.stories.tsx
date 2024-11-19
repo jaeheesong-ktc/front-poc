@@ -4,9 +4,7 @@ import { IconButtonProps } from './IconButton'
 import { TrashIcon } from '@storybook/icons'
 import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
-const sizeOptions = ['small', 'medium', 'large'] as const
-const variantOptions = ['filled', 'outlined', 'standard'] as const
+const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 interface IMeta {
   title: string
   component: object
@@ -47,14 +45,14 @@ type Story = StoryObj<IconButtonProps>
 export const Default: Story = {
   args: {
     icon: <TrashIcon size={20} />,
-    href: 'https://www.naver.com',
+    onClick: () => alert('IconButton clikced')
   },
 }
 
 export const Color: Story = {
   render: () => {
     const colorGroup = colorOptions.map((color) => (
-      <IconButton color={color} icon={<TrashIcon size={20} />} />
+      <IconButton color={color} icon={<TrashIcon size={20}/>} href='https://www.naver.com'/>
     ))
     return <StoryTemplate items={colorGroup} />
   },

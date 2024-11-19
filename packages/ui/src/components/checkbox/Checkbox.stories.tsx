@@ -4,7 +4,7 @@ import { Checkbox } from './Checkbox'
 import { CheckboxProps } from './Checkbox'
 import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
+const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 
 interface IMeta {
@@ -45,25 +45,52 @@ type Story = StoryObj<CheckboxProps>
 
 export const Default: Story = {
   args: {
-    value: 'Apple',
-    label: 'apple',
-    // checked: true,
-    // defaultChecked: true,
-    // indeterminate: true,
-  },
+    label: 'checkbox',
+  }
 }
-export const defaluteChecked: Story = {
-  args: {
-    value: 'Apple',
-    label: 'apple',
-    defaultChecked: true,
-  },
+
+export const Indeterminate: { render: () => void } = {
+  render: () => {
+
+    const [checked, setChecked] = React.useState([true, false]);
+
+    const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setChecked([event.target.checked, event.target.checked]);
+    };
+
+    const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setChecked([event.target.checked, checked[1]]);
+    };
+
+    const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setChecked([checked[0], event.target.checked]);
+    };
+
+    const children = (
+      <div style={{marginLeft: '10px'}}>
+        <Checkbox label="Child 1" checked={checked[0]} onChange={handleChange2} />
+        <Checkbox label="Child 2" checked={checked[1]} onChange={handleChange3} />
+      </div>
+    );
+
+    return (
+      <div>
+        <Checkbox
+          label="Parent"
+          checked={checked[0] && checked[1]}
+          indeterminate={checked[0] !== checked[1]}
+          onChange={handleChange1}
+        />
+        {children}
+      </div>
+    );
+  }
 }
 
 export const Size: Story = {
   render: () => {
     // eslint-disable-next-line react/jsx-key
-    const sizeGroup = sizeOptions.map((size) => <Checkbox id={size} label={size} size={size} />)
+    const sizeGroup = sizeOptions.map((size) => <Checkbox id={size} label={size} size={size} defaultChecked />)
     return <StoryTemplate items={sizeGroup} />
   }
 }
@@ -71,7 +98,7 @@ export const Size: Story = {
 export const Color: Story = {
   render: () => {
     // eslint-disable-next-line react/jsx-key
-    const colorGroup = colorOptions.map((color) => <Checkbox id={color} label={color} color={color} />)
+    const colorGroup = colorOptions.map((color) => <Checkbox id={color} label={color} color={color} defaultChecked />)
     return <StoryTemplate items={colorGroup} />
   }
 }
