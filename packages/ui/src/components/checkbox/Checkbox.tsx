@@ -65,13 +65,6 @@ export const Checkbox = (
         disabled={!!disabled}
         id={id || ''}
         value={value || ''}
-        checked={indeterminate ?
-          true
-          : onChange !== undefined ?
-            checked != undefined ? checked : internalChecked
-            : checked != undefined ?  checked : internalChecked} // 외부에서 받은 checked 값 또는 내부 상태 사용
-        disabled={!!disabled}
-        id={id}
         onChange={handleChange}
       />
       <span>{label}</span>
