@@ -87,44 +87,6 @@ export const Indeterminate: { render: () => void } = {
   }
 }
 
-export const Indeterminate: { render: () => void } = {
-  render: () => {
-
-    const [checked, setChecked] = React.useState([true, false]);
-
-    const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setChecked([event.target.checked, event.target.checked]);
-    };
-
-    const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setChecked([event.target.checked, checked[1]]);
-    };
-
-    const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setChecked([checked[0], event.target.checked]);
-    };
-
-    const children = (
-      <div style={{marginLeft: '10px'}}>
-        <Checkbox label="Child 1" checked={checked[0]} onChange={handleChange2} />
-        <Checkbox label="Child 2" checked={checked[1]} onChange={handleChange3} />
-      </div>
-    );
-
-    return (
-      <div>
-        <Checkbox
-          label="Parent"
-          checked={checked[0] && checked[1]}
-          indeterminate={checked[0] !== checked[1]}
-          onChange={handleChange1}
-        />
-        {children}
-      </div>
-    );
-  }
-}
-
 export const Color: Story = {
   render: () => {
     const colorGroup = colorOptions.map((color) => <Checkbox id={color} label={color} color={color} defaultChecked />)
