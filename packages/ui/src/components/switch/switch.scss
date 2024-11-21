@@ -1,21 +1,3 @@
-.switch-label {
-  &-enabled {
-    display: inline-flex;
-    align-items: center;
-    justify-items: center;
-    gap: 0.7rem;
-    cursor: pointer;
-  }
-
-  &-disabled {
-    display: inline-flex;
-    align-items: center;
-    justify-items: center;
-    gap: 0.7rem;
-    cursor: not-allowed;
-  }
-}
-
 @mixin storybook-switch($color) {
   appearance: none;
   -webkit-appearance: none;
@@ -24,34 +6,12 @@
   // 기본, 아무 action 없을 때
   position: relative;
   border-radius: 20px;
-  width: 40px;
-  height: 24px;
   background-color: lightgray;
   box-shadow: 1px 2px 3px #00000020;
   margin: 0;
 
-  // 원
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #fff;
-    transition: left 250ms linear;
-    transform: scale(0.8);
-    box-shadow: 1px 2px 3px #00000020;
-  }
-
   &:checked {
     background-color: $color;
-  }
-  // checked 되었을 때, 원
-  &:checked::before {
-    background-color: white;
-    left: 1.2em;
   }
 
   // not-checked 상태로 disabled(배경, 원)
@@ -85,6 +45,8 @@
   }
 }
 
+
+/* check color------------------------------------ */
 $colors: (
         primary: var(--ktc-color-primary),
         secondary: var(--ktc-color-secondary),
@@ -97,6 +59,72 @@ $colors: (
   @each $name, $color in $colors {
     &-#{$name} {
       @include storybook-switch($color)
+    }
+  }
+}
+
+/* check style + size------------------------------------ */
+@mixin switch-style-size($width, $height, $top, $left, $circle-width, $circle-height, $circle-left) {
+  width: $width;
+  height: $height;
+
+  // 원
+  &::before {
+    content: "";
+    position: absolute;
+    top: $top;
+    left: $left;
+    width: $circle-width;
+    height: $circle-height;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: left 250ms linear;
+    transform: scale(0.8);
+    box-shadow: 1px 2px 3px #00000020;
+  }
+
+  // checked 되었을 때, 원
+  &:checked::before {
+    background-color: white;
+    left: $circle-left;
+  }
+}
+
+.storybook-switch-size {
+  &-small { @include switch-style-size(35px, 20px, 0, 0, 20px, 20px, 15px) }
+  &-medium { @include switch-style-size(40px, 24px, 0, 0, 24px, 24px, 16px) }
+  &-large { @include switch-style-size(45px, 28px, 0, 0, 28px, 28px, 17px) }
+}
+
+/* font size------------------------------------ */
+$font-sizes: (
+        'small': var(--ktc-font-size-s),
+        'medium': var(--ktc-font-size-m),
+        'large': var(--ktc-font-size-l)
+);
+
+@mixin font-size($size) {
+  font-size: $size;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.storybook-font {
+  @each $name, $size in $font-sizes {
+    &-#{$name} {
+
+      &-enabled {
+        @include font-size($size);
+        cursor: pointer;
+      }
+
+      &-disabled {
+        @include font-size($size);
+        color: var(--ktc-color-text-disabled);
+        cursor: not-allowed;
+      }
     }
   }
 }

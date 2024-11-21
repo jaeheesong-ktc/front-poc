@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './radio.scss'
 import '@kt-cloud-front/ui/styles/ktcTheme.scss'
 
 export interface RadioProps {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
-  checked?: boolean
+  defaultChecked?: boolean
   disabled?: boolean
   id?: string
   name?: any
@@ -17,7 +17,7 @@ export interface RadioProps {
 export const Radio = (
   {
     color = 'primary',
-    checked,
+    defaultChecked,
     disabled = false,
     id,
     label,
@@ -29,38 +29,31 @@ export const Radio = (
   }: RadioProps) => {
 
   // 내부 상태로 checked 값을 관리
-  const [internalChecked, setInternalChecked] = useState<boolean>(false)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newChecked = e.target.checked
-    setInternalChecked(newChecked) // 내부 상태 업데이트
+    // 외부로 변경 이벤트 전달
     if (onChange) {
-      onChange(e)
+      onChange(e);
     }
   }
 
   return (
-    <div style={{
-      padding: '7px 15px'
-    }}>
-    {/*<span className={[`storybook-radio-focus`].join(' ')}>*/}
-      <label
-        className={[`storybook-font-size-${size}`].join(' ')}
-        // for={id}
-      >
-        <input
-          type='radio'
-          name={name || ''}
-          disabled={!!disabled}
-          id={id || ''}
-          value={value || ''}
-          onChange={handleChange}
-          className={[`storybook-radio-color-${color}`, `storybook-radio-size-${size}`].join(' ')}
-          checked={checked !== undefined ? checked : internalChecked} // 외부에서 받은 checked 값 또는 내부 상태 사용
-        />
-        {label}
-      </label>
-    {/*</span>*/}
-    </div>
+    <label
+      className={[
+        `storybook-font-${size}-${disabled ? 'disabled' : 'enabled'}`
+      ].join(' ')}
+    >
+      <input
+        type='radio'
+        className={[`storybook-radio-color-${color}`, `storybook-radio-size-${size}`].join(' ')}
+        name={name || ''}
+        defaultChecked={!!defaultChecked}
+        disabled={!!disabled}
+        id={id || ''}
+        value={value || ''}
+        onChange={handleChange}
+      />
+      <span>{label}</span>
+    </label>
   )
 }
        

@@ -3,10 +3,10 @@
   appearance: none;
   -webkit-appearance: none;
 
+  position: relative;
   border: 1.2px solid #888888;
   border-radius: 2px;
   cursor: pointer;
-  position: relative;
   margin: 0;
 
   // 체크되었을 때의 스타일
@@ -17,19 +17,17 @@
 
   // disabled 상태일 때 스타일
   &:disabled {
-    cursor: default;
+    cursor: not-allowed;
 
     // checked && disabled 상태일 때
     &:checked {
-      opacity: 0.7;
-      border-color: var(--ktc-color-gray-400);
-      background-color: var(--ktc-color-gray-400);
+      border-color: var(--ktc-color-text-disabled);
+      background-color: var(--ktc-color-text-disabled);
     }
 
     // unchecked && disabled 상태일 때
     &:not(:checked) {
-      opacity: 0.7;
-      border-color: var(--ktc-color-gray-400);
+      border-color: var(--ktc-color-text-disabled);
     }
   }
 }

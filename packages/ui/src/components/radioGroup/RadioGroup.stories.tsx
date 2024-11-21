@@ -4,8 +4,7 @@ import { RadioGroupProps } from './RadioGroup'
 import { Radio } from '@kt-cloud-front/ui/components/radio/Radio'
 import React from "react";
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
-const sizeOptions = ['small', 'medium', 'large'] as const
+const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 interface IMeta {
   title: string;
   component: object
@@ -41,10 +40,10 @@ export const Default: Story = {
     name:'fruit',
     children:
       [
-        <Radio id={'apple'} value={'apple'} label={'Apple'} />,
+        <Radio id={'apple'} value={'apple'} label={'Apple'} defaultChecked/>,
         <Radio id={'orange'} value={'orange'} label={'Orange'} />,
         <Radio id={'melon'} value={'melon'} label={'Melon'} />
       ]
-  },
+  }
 }
 

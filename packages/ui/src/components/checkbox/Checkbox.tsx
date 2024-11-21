@@ -10,6 +10,7 @@ export interface CheckboxProps {
   indeterminate?: boolean
   label?: string
   size?: 'small' | 'medium' | 'large'
+  value?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   icon?: ReactNode
   checkedIcon?: ReactNode
@@ -24,6 +25,7 @@ export const Checkbox = (
     indeterminate= false,
     label,
     size = 'medium',
+    value,
     onChange,
     ...props
   }: CheckboxProps) => {
@@ -54,6 +56,15 @@ export const Checkbox = (
           indeterminate ?
             `storybook-check-size-determinate-${size}` : `storybook-check-size-${size}`
         ].join(' ')}
+        checked={indeterminate || (checked ?? internalChecked)}
+        // checked={indeterminate ?
+        //   true
+        //   : onChange !== undefined ?
+        //     checked != undefined ? checked : internalChecked
+        //     : checked != undefined ?  checked : internalChecked}
+        disabled={!!disabled}
+        id={id || ''}
+        value={value || ''}
         checked={indeterminate ?
           true
           : onChange !== undefined ?

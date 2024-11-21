@@ -2,8 +2,9 @@ import type { StoryObj } from '@storybook/react'
 import { Radio } from './Radio'
 import { RadioProps } from './Radio'
 import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import React from "react";
 
-const colorOptions = ['primary', 'secondary', 'error', 'warning'] as const
+const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const
 interface IMeta {
   title: string
@@ -40,32 +41,26 @@ type Story = StoryObj<RadioProps>
 
 export const Default: Story = {
   args: {
-    value: 'Apple',
-    label: 'apple',
-  },
-}
-
-export const DefaultChecked: Story = {
-  args: {
-    value: 'Apple',
-    label: 'apple',
-    checked: true,
+    value: 'radio',
+    label: 'Radio',
+    id: 'radio',
   },
 }
 
 export const Color: Story = {
   render: () => {
-    const colorGroup = colorOptions.map((color) => (
-      <Radio value={color} label={color} color={color} />
-    ))
+    const colorGroup = colorOptions.map((color) =>
+      <Radio id={color} value={color} label={color} color={color} name={'color'}/>
+    )
     return <StoryTemplate items={colorGroup} />
   },
 }
 
 export const Size: Story = {
   render: () => {
-    // eslint-disable-next-line react/jsx-key
-    const sizeGroup = sizeOptions.map((size) => <Radio value={size} label={size} size={size} />)
+    const sizeGroup = sizeOptions.map((size) =>
+      <Radio id={size} value={size} label={size} size={size} defaultChecked/>
+    )
     return <StoryTemplate items={sizeGroup} />
   },
 }
@@ -80,7 +75,7 @@ export const Disabled: Story = {
         margin: '40px',
         alignItems: 'center',
       }}>
-        <Radio checked disabled label={'disabled'} />
+        <Radio defaultChecked disabled label={'disabled'} />
         <Radio disabled label={'disabled'} />
       </div>
     )

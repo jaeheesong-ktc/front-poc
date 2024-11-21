@@ -39,13 +39,16 @@ export const Switch = (
   return (
     <label
       className={[
-        `switch-label-${disabled ? 'disabled' : 'enabled'}`
+        `storybook-font-${size}-${disabled ? 'disabled' : 'enabled'}`
       ].join(' ')}
     >
       <input
         type="checkbox"
         role="switch"
-        className={[`switch-color-${color}`].join(' ')}
+        className={[
+          `switch-color-${color}`,
+          `storybook-switch-size-${size}`
+        ].join(' ')}
         checked={checked !== undefined ? checked : internalChecked} // 외부에서 받은 checked 값 또는 내부 상태 사용
         {...(checked === undefined ? { defaultChecked: !!defaultChecked } : {})}
         disabled={!!disabled}
