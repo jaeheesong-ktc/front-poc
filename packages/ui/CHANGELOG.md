@@ -1,7 +1,7 @@
-# @kt-cloud-front/ui
+# @jaeheesong-ktc/ui
 
-## 0.0.1
+## 1.0.0
 
-### Patch Changes
+### Major Changes
 
-- 0.0.1
+- init

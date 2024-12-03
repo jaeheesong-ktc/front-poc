@@ -1,5 +1,5 @@
 {
-  "name": "@kt-cloud-front/eslint-config",
+  "name": "@jaeheesong-ktc/eslint-config",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",

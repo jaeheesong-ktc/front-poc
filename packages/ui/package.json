@@ -1,7 +1,7 @@
 {
-  "name": "@kt-cloud-front/ui",
+  "name": "@jaeheesong-ktc/ui",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -70,7 +70,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kt-cloud-front/ui.git"
+    "url": "https://github.com/front-poc/ui.git"
   },
   "publishConfig": {
     "access": "public",

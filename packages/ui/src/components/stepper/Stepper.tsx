@@ -7,10 +7,10 @@ export interface StepperProps {
 }
 
 export const Stepper = ({ activeStep, children }: StepperProps) => {
-  const [step, setStep] = useState<number>(activeStep | '')
+  const [step, setStep] = useState<number | string>(activeStep as number | string)
 
   useEffect(() => {
-    setStep(activeStep as number)
+    setStep(activeStep as number | string)
   }, [activeStep])
 
   return (
