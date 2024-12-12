@@ -1,4 +1,4 @@
-import { ChipProps } from '../chip/Chip.tsx';
+import { ChipProps } from '../chip/Chip';
 import { StoryObj } from '@storybook/react';
 interface IMeta {
     title: string;
