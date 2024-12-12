@@ -3,7 +3,7 @@ import { StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Args } from '@storybook/csf'
 import { Button } from '@kt-cloud-front/ui/components'
-import { Step } from '@kt-cloud-front/ui/components/stepper/Step.tsx'
+import { Step } from '@kt-cloud-front/ui/components/stepper/Step'
 
 interface IMeta {
   title: string

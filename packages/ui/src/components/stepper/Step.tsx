@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useContext } from 'react'
 import './stepper.scss'
-import StepperContext from './StepperContext.tsx'
+import StepperContext from './StepperContext'
 import { StatusPassIcon } from '@storybook/icons'
 
 export interface StepProps {

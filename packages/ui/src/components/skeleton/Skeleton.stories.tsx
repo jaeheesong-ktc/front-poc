@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react'
-import { Skeleton } from './Skeleton.tsx'
+import { Skeleton } from './Skeleton'
 import { FunctionComponent } from 'react'
 import { Args } from '@storybook/csf'
 

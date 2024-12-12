@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react'
 import { BellIcon } from '@storybook/icons'
-import { Badge } from './Badge.tsx'
+import { Badge } from './Badge'
 import { Args } from '@storybook/csf'
 
 interface IMeta {

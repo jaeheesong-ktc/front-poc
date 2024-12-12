@@ -86,16 +86,16 @@ export const Select = ({
             })
             .includes(item.value)
         ) {
-          setSelectedValue(selectedValue.filter((v) => v.value !== item.value))
-          onChange([selectedValue.filter((v) => v.value !== item.value)])
+          setSelectedValue(selectedValue.filter((v: any) => v.value !== item.value))
+          onChange([selectedValue.filter((v: any) => v.value !== item.value)])
         } else {
           setSelectedValue([...selectedValue, item])
           onChange([...selectedValue, item])
         }
       } else {
         if (selectedValue.includes(item)) {
-          setSelectedValue(selectedValue.filter((v) => v !== item))
-          onChange([selectedValue.filter((v) => v !== item)])
+          setSelectedValue(selectedValue.filter((v: any) => v !== item))
+          onChange([selectedValue.filter((v: any) => v !== item)])
         } else {
           setSelectedValue([...selectedValue, item])
           onChange([...selectedValue, item])
@@ -110,11 +110,11 @@ export const Select = ({
   }
 
   // 선택된 item의 Label 값 반환
-  const transferMenuItem = (item: object | string, key: any) => {
+  const transferMenuItem = (item: any, key: any) => {
     return typeof item === 'object' ? item[key] : item
   }
 
-  const isSelectedMenuItem = (item) => {
+  const isSelectedMenuItem = (item: any) => {
     const array = [selectedValue].flat(Infinity)
     if (multiple) {
       if (

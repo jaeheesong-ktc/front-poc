@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import StepperContext from '@kt-cloud-front/ui/components/stepper/StepperContext.tsx'
+import StepperContext from '@kt-cloud-front/ui/components/stepper/StepperContext'
 
 export interface StepperProps {
   activeStep?: string | number

@@ -1,3 +1,3 @@
-import { Badge } from './Badge.tsx'
+import { Badge } from './Badge'
 
 export default Badge

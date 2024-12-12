@@ -1,4 +1,4 @@
-import { Chip, ChipProps } from '../chip/Chip.tsx'
+import { Chip, ChipProps } from '../chip/Chip'
 import type { StoryObj } from '@storybook/react'
 import { ReactNode, useState } from 'react'
 

@@ -26,7 +26,7 @@ export const Chip = ({
   onDelete,
   ...props
 }: ChipProps) => {
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     if (onClick) {
       onClick(e)
     }

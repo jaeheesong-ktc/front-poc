@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import TabContext from './TabContext.tsx'
+import TabContext from './TabContext'
 
 export interface TabsProps {
   value: string | number
