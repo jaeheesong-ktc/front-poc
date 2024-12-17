@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), libInjectCss(), dts({ exclude: ['**/*.stories.ts'] }), tsconfigPaths()],
+  plugins: [react(), libInjectCss(), dts({ entryRoot: 'src', include: ['src'], exclude: ['node_modules', 'dist', '**/*.stories.ts'] }), tsconfigPaths()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -15,21 +15,32 @@ export default defineConfig({
     },
   },
   build: {
-    // cssCodeSplit: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'ui-design-system',
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`,
+      fileName: 'index',
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
+      output: [
+        {
+          format: 'esm',
+          dir: 'dist',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          entryFileNames: ({ name: fileName }) => {
+            return `${fileName}.js`
+          },
         },
-      },
+        {
+          format: 'cjs',
+          dir: 'dist',
+          entryFileNames: ({ name: fileName }) => {
+            return `${fileName}.cjs`
+          },
+        },
+      ]
     },
   },
 })
