@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+// import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 // import postcss from 'rollup-plugin-postcss'
-import autoprefixer from 'autoprefixer'
-import cssnano from 'cssnano'
+// import autoprefixer from 'autoprefixer'
+// import cssnano from 'cssnano'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
 // https://vitejs.dev/config/
@@ -39,6 +39,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
+      '@': path.resolve(__dirname, 'src/components'),
     },
   },
   build: {
