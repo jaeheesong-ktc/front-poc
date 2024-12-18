@@ -4,11 +4,13 @@ import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import postcss from 'rollup-plugin-postcss'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    cssInjectedByJsPlugin(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
@@ -43,6 +45,7 @@ export default defineConfig({
         postcss({
           extract: true, // CSS를 파일로 분리
           minimize: true, // CSS 파일 최적화
+          extensions: ['.scss'], // SCSS 파일 처리
         }),
       ],
       output: [
