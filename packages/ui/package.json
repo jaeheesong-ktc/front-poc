@@ -1,7 +1,7 @@
 {
   "name": "@jaeheesong-ktc/ui",
   "type": "module",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "private": false,
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -28,12 +28,7 @@
       "import": "./dist/components/*/index.js"
     }
   },
-  "sideEffects": [
-    "*.css"
-  ],
   "dependencies": {
-    "autoprefixer": "^10.4.20",
-    "cssnano": "^7.0.6",
     "eslint": "^8.56.0",
     "postcss-nesting": "^13.0.0",
     "react": "^18.3.1",

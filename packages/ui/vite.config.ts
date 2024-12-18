@@ -7,6 +7,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 // import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
+import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
     //   modules: true, // CSS 모듈화
     // }),
     // cssInjectedByJsPlugin({ topExecutionPriority: false }),
+    libInjectCss(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
@@ -31,7 +33,6 @@ export default defineConfig({
       scss: {
         api: 'modern',
         implementation: 'sass-embedded',
-        // additionalData: `@import "src/styles/ktcTheme.scss";`,
       },
     },
   },
