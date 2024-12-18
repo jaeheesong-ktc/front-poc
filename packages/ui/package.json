@@ -1,7 +1,7 @@
 {
   "name": "@jaeheesong-ktc/ui",
   "type": "module",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": false,
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -24,7 +24,8 @@
       "require": "./dist/index.cjs"
     },
     "./components/*": {
-      "types": "./dist/components/*/index.d.ts"
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js"
     }
   },
   "dependencies": {

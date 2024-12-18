@@ -14,11 +14,6 @@ export default defineConfig({
       },
     },
   },
-  // resolve: {
-  //   alias: {
-  //     "@jaeheesong-ktc/ui": path.resolve(__dirname, 'src/components'),
-  //   },
-  // },
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
@@ -37,8 +32,8 @@ export default defineConfig({
         {
           format: 'esm',
           dir: 'dist',
-          // preserveModules: true,
-          // preserveModulesRoot: 'src',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
           entryFileNames: ({ name: fileName }) => {
             return `${fileName}.js`
           },
