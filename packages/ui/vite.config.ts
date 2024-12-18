@@ -10,7 +10,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 export default defineConfig({
   plugins: [
     react(),
-    // cssInjectedByJsPlugin(),
+    cssInjectedByJsPlugin(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
@@ -42,8 +42,8 @@ export default defineConfig({
       external: ['react', 'react-dom'],
       plugins: [
         postcss({
-          extract: true, // CSS를 파일로 분리
-          minimize: true, // CSS 파일 최적화
+          extract: true,
+          minimize: true,
           extensions: ['.scss'], // SCSS 파일 처리
         }),
       ],
