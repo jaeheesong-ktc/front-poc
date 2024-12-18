@@ -1,7 +1,7 @@
 {
   "name": "@jaeheesong-ktc/ui",
   "type": "module",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": false,
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -28,6 +28,9 @@
       "import": "./dist/components/*/index.js"
     }
   },
+  "sideEffects": [
+    "*.css"
+  ],
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
