@@ -1,7 +1,7 @@
 {
   "name": "@jaeheesong-ktc/ui",
   "type": "module",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": false,
   "scripts": {
     "dev": "storybook dev -p 6006",
@@ -36,6 +36,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite-plugin-commonjs": "^0.10.3",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {

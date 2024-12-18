@@ -3,10 +3,23 @@ import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
+//import postcss from 'rollup-plugin-postcss'
+// import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), libInjectCss(), dts({ insertTypesEntry: true, include: ['src'], exclude: ['node_modules', 'dist', '**/*.stories.ts'] }), tsconfigPaths()],
+  plugins: [
+    react(),
+    // libInjectCss(),
+    cssInjectedByJsPlugin(),
+    dts({
+      insertTypesEntry: true,
+      include: ['src'],
+      exclude: ['node_modules', 'dist', '**/*.stories.ts'],
+    }),
+    tsconfigPaths(),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
@@ -17,7 +30,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
-    }
+    },
   },
   build: {
     lib: {
@@ -45,7 +58,7 @@ export default defineConfig({
             return `${fileName}.cjs`
           },
         },
-      ]
+      ],
     },
   },
 })
