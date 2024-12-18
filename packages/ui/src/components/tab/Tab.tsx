@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useContext } from 'react'
 import './tab.scss'
-import TabContext from '@kt-cloud-front/ui/components/tab/TabContext'
+import TabContext from '@components/tab/TabContext'
 
 export interface TabProps {
   label?: string | ReactElement

@@ -1,10 +1,23 @@
 {
   "extends": "../typescript-config/index.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
-      "@kt-cloud-front/ui/*": [
-        "./src/*"
-      ]
+      "@common/*": [
+        "src/common/*",
+      ],
+      "@components/*": [
+        "src/components/*",
+      ],
+      "@foundations/*": [
+        "src/foundations/*",
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+//      "@kt-cloud-front/ui/*": [
+//        "./src/*"
+//      ]
     },
     "outDir": "dist",
     "moduleResolution": "bundler", // 번들러의 모듈 해석 방식을 따름

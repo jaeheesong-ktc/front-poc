@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react'
 import { IconButton } from './IconButton'
 import { IconButtonProps } from './IconButton'
 import { TrashIcon } from '@storybook/icons'
-import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import StoryTemplate from '@common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 interface IMeta {

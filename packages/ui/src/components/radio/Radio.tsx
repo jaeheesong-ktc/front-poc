@@ -1,6 +1,6 @@
 import React from 'react'
 import './radio.scss'
-import '@kt-cloud-front/ui/styles/ktcTheme.scss'
+import '@styles/ktcTheme.scss'
 
 export interface RadioProps {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning'

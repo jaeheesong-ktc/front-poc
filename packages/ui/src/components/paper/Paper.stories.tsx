@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Paper } from './Paper'
-import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import StoryTemplate from '@common/StoryTemplate'
 
 const variantOptions = ['outlined', 'elevation'] as const
 

@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), libInjectCss(), dts({ entryRoot: 'src', include: ['src'], exclude: ['node_modules', 'dist', '**/*.stories.ts'] }), tsconfigPaths()],
+  plugins: [react(), libInjectCss(), dts({ insertTypesEntry: true, include: ['src'], exclude: ['node_modules', 'dist', '**/*.stories.ts'] }), tsconfigPaths()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -14,10 +14,20 @@ export default defineConfig({
       },
     },
   },
+  // resolve: {
+  //   alias: {
+  //     "@jaeheesong-ktc/ui": path.resolve(__dirname, 'src/components'),
+  //   },
+  // },
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+    }
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'ui-design-system',
+      name: 'ui',
       formats: ['es', 'cjs'],
       fileName: 'index',
     },

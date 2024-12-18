@@ -2,8 +2,8 @@ import { Stepper, StepperProps } from './Stepper'
 import { StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Args } from '@storybook/csf'
-import { Button } from '@kt-cloud-front/ui/components'
-import { Step } from '@kt-cloud-front/ui/components/stepper/Step'
+import { Button } from '@components/button/Button'
+import { Step } from '@components/stepper/Step'
 
 interface IMeta {
   title: string

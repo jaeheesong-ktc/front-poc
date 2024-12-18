@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Radio } from '@kt-cloud-front/ui/components/radio/Radio';
+import { Radio } from '@components/radio/Radio';
 import './radiogroup.scss'
 
 export interface RadioGroupProps {

@@ -3,7 +3,7 @@ import type { StoryObj } from '@storybook/react'
 import { Button } from './Button'
 import { ButtonProps } from './Button'
 import { TrashIcon } from '@storybook/icons'
-import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import StoryTemplate from '@common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TextField } from './TextField'
-import StoryTemplate from '@kt-cloud-front/ui/common/StoryTemplate'
+import StoryTemplate from '@common/StoryTemplate'
 
 const colorOptions = ['primary', 'secondary', 'error', 'success', 'warning'] as const
 const sizeOptions = ['small', 'medium', 'large'] as const

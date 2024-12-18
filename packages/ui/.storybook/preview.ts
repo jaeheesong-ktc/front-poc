@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react'
-import '@kt-cloud-front/ui/styles/ktcTheme.scss'
+import '@styles/ktcTheme.scss'
 
 const preview: Preview = {
   parameters: {

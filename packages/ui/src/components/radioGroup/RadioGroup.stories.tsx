@@ -1,7 +1,7 @@
 import type { StoryObj } from '@storybook/react'
 import { RadioGroup } from './RadioGroup'
 import { RadioGroupProps } from './RadioGroup'
-import { Radio } from '@kt-cloud-front/ui/components/radio/Radio'
+import { Radio } from '@components/radio/Radio'
 import React from "react";
 
 const colorOptions = ['primary', 'secondary', 'success', 'error', 'warning'] as const
