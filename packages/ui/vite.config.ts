@@ -3,24 +3,12 @@ import react from '@vitejs/plugin-react'
 import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
-// import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
-// import postcss from 'rollup-plugin-postcss'
-// import autoprefixer from 'autoprefixer'
-// import cssnano from 'cssnano'
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import postcss from 'rollup-plugin-postcss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    // postcss({
-    //   plugins: [autoprefixer, cssnano],
-    //   extract: false,
-    //   inject: true, // CSS를 JS 파일에 주입
-    //   modules: true, // CSS 모듈화
-    // }),
-    // cssInjectedByJsPlugin({ topExecutionPriority: false }),
-    libInjectCss(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
@@ -32,7 +20,6 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         api: 'modern',
-        implementation: 'sass-embedded',
       },
     },
   },
@@ -49,14 +36,21 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: 'index',
     },
+    cssCodeSplit: true,
     rollupOptions: {
       external: ['react', 'react-dom'],
+      plugins: [
+        postcss({
+          extract: true, // CSS를 파일로 분리
+          minimize: true, // CSS 파일 최적화
+        }),
+      ],
       output: [
         {
           format: 'esm',
           dir: 'dist',
-          // preserveModules: true,
-          // preserveModulesRoot: 'src',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
           entryFileNames: ({ name: fileName }) => {
             return `${fileName}.js`
           },
