@@ -4,7 +4,7 @@ import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
-import postcss from 'rollup-plugin-postcss'
+// import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 
@@ -12,13 +12,13 @@ import cssnano from 'cssnano'
 export default defineConfig({
   plugins: [
     react(),
-    postcss({
-      plugins: [autoprefixer, cssnano],
-      extract: false,
-      inject: true, // CSS를 JS 파일에 주입
-      modules: true, // CSS 모듈화
-    }),
-    cssInjectedByJsPlugin({ topExecutionPriority: false }),
+    // postcss({
+    //   plugins: [autoprefixer, cssnano],
+    //   extract: false,
+    //   inject: true, // CSS를 JS 파일에 주입
+    //   modules: true, // CSS 모듈화
+    // }),
+    // cssInjectedByJsPlugin({ topExecutionPriority: false }),
     dts({
       insertTypesEntry: true,
       include: ['src'],
