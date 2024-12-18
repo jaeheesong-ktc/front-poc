@@ -10,7 +10,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 export default defineConfig({
   plugins: [
     react(),
-    cssInjectedByJsPlugin(),
+    // cssInjectedByJsPlugin(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
@@ -27,7 +27,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
       '@': path.resolve(__dirname, 'src/components'),
     },
   },
