@@ -55,8 +55,8 @@ export default defineConfig({
         {
           format: 'esm',
           dir: 'dist',
-          preserveModules: true,
-          preserveModulesRoot: 'src',
+          // preserveModules: true,
+          // preserveModulesRoot: 'src',
           entryFileNames: ({ name: fileName }) => {
             return `${fileName}.js`
           },
