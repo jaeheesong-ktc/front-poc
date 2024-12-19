@@ -4,13 +4,15 @@ import * as path from 'path'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import postcss from 'rollup-plugin-postcss'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import { libInjectCss } from 'vite-plugin-lib-inject-css'
+// import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    cssInjectedByJsPlugin(),
+    libInjectCss(),
+    // cssInjectedByJsPlugin(),
     dts({
       insertTypesEntry: true,
       include: ['src'],
